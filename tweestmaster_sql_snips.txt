@@ -1,0 +1,12 @@
+# returns every user with count of tweests
+db.session.query(User,func.count(Twist.id)).outerjoin(Twist,Twist.user_id==User.id).group_by(User.id).all()
+
+
+db.session.query(Twist,func.count(Twist.id)).filter(User.id==2).join(User,Twist.user_id==User.id).all()
+
+
+db.session.query(Twist,func.count(User.id)).filter(User.id==2).join(User,Twist.user_id==User.id).group_by(User.id).all()
+
+
+tweests = db.session.query(Twist, User).filter(Twist.user_id==user_of_interest_id).join(User, Twist.user_id == User.id).order_by(Twist.id.desc()).all()
+

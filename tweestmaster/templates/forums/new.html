@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+
+{% block main_content%}
+
+<div class="content-section">
+  <form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">{{ legend }}</legend>
+      <div class="form-group">
+        {{ form.name.label(class="form-control-label") }}
+        {% if form.name.errors %}
+        {{ form.name(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.name.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.name(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.description.label(class="form-control-label") }}
+        {% if form.description.errors %}
+        {{ form.description(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.description.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.description(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2">Make forum private</div>
+        <div class="col-sm-10">
+          <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridcheck1">
+            <label class="form-check-label" for="gridcheck1">True</label>
+            
+          <span>{{ form.is_public.label(class="form-control-label") }}
+        {{ form.is_public(class="form-control form-control-lg") }}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form.picture.label(class="form-control-label") }}
+        {% if form.picture.errors %}
+        {{ form.picture(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.picture.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.picture(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.password.label(class="form-control-label") }}
+        {% if form.password.errors %}
+        {{ form.password(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.password.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.password(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.confirm_password.label(class="form-control-label") }}
+        {% if form.confirm_password.errors %}
+        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.confirm_password.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.confirm_password(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      </div>
+    </fieldset>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}
+

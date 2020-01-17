@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+<div>{{ data['title'] }}</div>
+{% for forum in data['forums'] %}
+<h5>{{ forum.name }}</h5>
+<p>{{ forum.description }}</p>
+{% endfor %}
+
+{% endblock %}

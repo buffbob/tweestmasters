@@ -1,0 +1,74 @@
+
+
+    <!DOCTYPE html>
+
+    <html lang="en">
+
+    <head>
+
+    <meta charset="UTF-8">
+
+    <title>Fred</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            $("input[type='button']").click(function(){
+
+                var radioValue = $("input[name='gender']:checked").val();
+
+                if(radioValue){
+
+                    alert("Your are a - " + radioValue);
+
+                }
+
+            });
+
+            
+
+        });
+
+    </script>
+
+    </head> 
+
+    <body>
+
+        <h4>your gender = {{ name }}</h4>
+        {% if name == "shit" %}
+        <form method="POST">
+            <p>
+            <label><input type="radio" onclick="this.form.submit()" name="gender" value="male">male</label>
+            <label><input type="radio" onclick="this.form.submit()" name="gender" value="female" checked>female</label>
+        </p>
+        </form>
+        {% endif %}
+
+
+        {% if name == "female" %}
+        <form method="POST">
+
+            <p>
+            <label><input type="radio" onclick="this.form.submit()" name="gender" value="male">Male</label>
+            <label><input type="radio" onclick="this.form.submit()" name="gender" value="female" checked>Female</label>
+        </p>
+        </form>
+        {% endif %}
+        {% if name=='male'%}
+        <form method="POST">
+        <p> 
+            <label><input type="radio" onclick="this.form.submit()" name="gender" value="male" checked>squirrel</label>
+            <label><input type="radio" onclick="this.form.submit()" name="gender" value="female">twirl</label>
+
+        </p>
+        </form>
+        {% endif %}
+
+    </body>
+
+    </html>
+

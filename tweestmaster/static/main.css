@@ -1,0 +1,162 @@
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+hr {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+    margin-bottom:4px;
+    margin-top:2px;
+    color:#ccccc3;
+}
+
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+.article-title {
+  color: #444444;
+  font-size: 16px;
+  font-style: bold;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+a.at_hover:hover{
+  color: #428bca;
+  text-decoration: none;
+}
+.article-content {
+  white-space: pre-line;
+  font-size: 14px;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 1px;
+  border-bottom: 1px solid #e3e3e3
+  /*font-size: 12px;*/
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.article-xsm-font {
+  font-size: 8px;
+}
+
+.article-sm-font {
+  font-size: 10px;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+
+#post_text{
+    font-size:12px;
+    margin-bottom: 1px;
+}
+
+#my_text{
+    font-size:14px;
+    margin-bottom: 1px;
+}
+
+.getclass{
+    font-size:12px;
+    color: #222222;
+}
+
+#username{
+  font-size:12px;
+}
+#username2{
+  font-size:14px;
+}
+
+.sidebar_list_titles{
+    font-size:12px;
+
+}
+
+.blue_text{
+    color:red;
+}
+
+.article-header{
+    color:red;
+}
+
+#create_tweest_article_image{
+    border-radius: 5%;
+    width:150px;
+
+
+}
+
+.flex-container{
+    display:flex;
+    align-items:center;
+}
+
+.tweest-sidebar{
+    margin-top: 70px;
+}

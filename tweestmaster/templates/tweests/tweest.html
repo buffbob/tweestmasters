@@ -1,0 +1,50 @@
+{% extends "layout-account.html" %}
+{% block content %}
+<div class="card">
+  <div>
+    <img class="rounded-circle article-img m-2"
+         src="{{ url_for('static', filename='profile_pics/'+ data['author_image'])}}">
+    <strong class="mt-2">{{ data['tweest_title'] }}</strong>
+    <span class="getclass float-right m-1 pr-1">posted on: <span class="blue_text">{{ data['post_date'] }}</span></span>
+    <hr class="float-center">
+  </div>
+  <div>
+    {{ data['content'] }}
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<div class="container">
+  <div class="tweest-sidebar">
+  <div>
+    <a  href="{{ url_for('articles.article',id=data['article_id']) }}">link to tweest article</a>
+    <hr class="mt-3">
+  </div>
+    <hr>
+    <div class="m-2">
+      <h5>your reviews</h5>
+    </div>
+    {# check for  listing the reviews ___________________ #}
+  {% if data['reviews'][0] %}
+  <div>
+    {% for review in data['reviews'] %}
+    <div>
+      here is a review
+    </div>
+    <hr>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div>
+    <p>no reviews yet</p>
+  </div>
+    {% endif %}
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

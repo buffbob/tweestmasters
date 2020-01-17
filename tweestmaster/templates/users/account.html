@@ -1,0 +1,86 @@
+{% extends "layout-3.html" %}
+
+
+{# this is probably not used anymore #}
+<!-- this is a comment -->
+
+{% block main_header %}
+{% endblock %}
+{% block main_content%}
+<div>flag is::: {{ data['flag'] }}</div>
+<div>
+  <h4>{{ data['title'] }}'s: Home Page</h4>
+</div>
+<hr>
+<div>
+  {% if data['lengths'][0] > 0 %}
+  <h5>Articles</h5>
+  <hr>
+  {% for article in data['articles'] %}
+  <div class="container">
+    <div id="user_article_image" class="col-md-2">
+      <img src="{{ url_for('static', filename='article_images/' + article.pics[0].uri) }}">
+    </div>
+    <div>
+      {{ article.pics[0].uri }}
+    </div>
+    <div class="col-md-10">
+      <div><a href="{{ url_for('articles.article', id = article.id) }}">{{ article.title }}</a></div>
+      <div>
+        <pre>{{ article.content }}</pre>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% if data['lengths'][1] > 0 %}
+  <hr>
+  <h5>Tweests</h5>
+  <hr>
+    {% for tweest in data['tweests'] %}
+    <div>
+      <div >{{ tweest.title }}
+        <div class="float-right" style="color:blue">date posted: {{ tweest.date_created.strftime('%Y-%m-%d') }}</div>
+      </div>
+      <div class="row">{{ tweest.content }}</div>
+      <div>
+        <hr>
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}
+  {% if data['lengths'][2] > 0 %}
+  <hr>
+  <h5>Reviews</h5>
+    {% for review in data['reviews'] %}
+       <div>
+      <div class="row">{{ review.title }}
+        <span>date posted: {{ review.date_created.srtftime("%Y-%m-%d") }}</span>
+      </div>
+      <div class="row">{{ review.content }}</div>
+    </div>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+
+
+
+{% block sidebar %}
+{#  <div>
+    <h5>User stats</h5>
+    <div>date joined: {{ user.date_created }}</div>
+    <div>Number of Articles:</div>
+    <div>Number of Tweests: ()</div>
+    <div>Number of Reviews:</div>
+    <div>Number of Forums: 0:::: refactor!!!!</div>
+  </div>
+  <hr>
+  <div class='text-muted'>Great Stuff</div>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-light">Most Popular Articles</li>
+    <li class="list-group-item list-group-item-light">Most Popular tweests</li>
+    <li class="list-group-item list-group-item-light">Most followed Forums</li>
+    <li class="list-group-item list-group-item-light">wildcard</li>
+  </ul>
+</div> #}
+{% endblock %}
