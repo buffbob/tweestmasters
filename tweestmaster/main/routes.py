@@ -23,11 +23,13 @@ def home():
     all_articles = Article.query.order_by(Article.date_created.desc()).all()
     tweests_per_article = [len(e.tweests) for e in all_articles]
     sidebar_articles = zip(all_articles, tweests_per_article)
-
-    session['current_user'] = -1 #unkown
-    session['current_forum'] = 1 # master
-    session['current_article'] = article_id
+# these 3 session variables are ints that are the id attribute of the current state.
+# this is used extensively in view functions.
+    session['current_user_id'] = -1 #unkown
+    session['current_forum_id'] = 1 # master
+    session['current_article_id'] = article_id # the id attribute of the feature article(int)
     arg_dic={
+
         "title":"Welcome",
         "article_id":article_id,
         "article_images":images,
@@ -38,9 +40,9 @@ def home():
         "num_tweests":len(tweests_users),
         "sidebar_articles": sidebar_articles, # a tuple
         "sidebar_forums":"booger",
-        "current_article": session.get('current_article', 1), # default 1st article for display always
-        "current_user": session.get("current_user", -1), # -1 is unkwown user
-        "current_forum": session.get('current_forum', 1), # master
+        "current_article": session.get('current_article_id', 1), # default 1st article for display always
+        "current_user": session.get("current_user_id", -1), # -1 is unkwown user
+        "current_forum": session.get('current_forum_id', 1), # master
     }
     return render_template('main/home.html', data=arg_dic)
 

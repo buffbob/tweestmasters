@@ -1,4 +1,4 @@
-{% extends "layout-3.html" %}
+{% extends "layout-basic.html" %}
 
 {% block main_header %}
 <div class="text-center">
@@ -54,7 +54,6 @@
     <textarea class="article-content p-2" cols="800" rows="10">{{ data['article_content'] }}</textarea>
   </div>
 </div>
-
 
 {% endblock %}
 
@@ -112,6 +111,12 @@
 
 {% block sidebar_header %}
 <div class="content-section">
+  {% if current_user.username %}
+ <h1>{{ current_user.username }}__shit__{{ current_user.id }}__boog__{{ current_user.id }}</h1>
+{% else %}
+<h1>boogers- </h1>
+{% endif %}
+<h1>*****##******</h1>
   {% if data['filter']=='articles' %}
   <form method="POST">
     <label class="radio-inline">

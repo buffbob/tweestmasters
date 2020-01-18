@@ -1,9 +1,7 @@
-from flask import Blueprint, render_template
-from flask_login import login_required
+from flask import session
 from flask import Blueprint, render_template, url_for, flash, redirect, request, current_app
-from flask_login import login_user, current_user, logout_user, login_required
-from PIL import Image
-from tweestmaster import db, bcrypt
+from flask_login import current_user, login_required
+
 from tweestmaster.models import User, Tweest, Article, Forum
 from tweestmaster.articles.forms import ArticleForm, UpdateArticleForm
 from tweestmaster.site_utils import format_and_save_article_pictures, send_reset_email
@@ -45,6 +43,9 @@ def article(id):
         "article":article,
         "title":"Article",
         "legend": "an article by " + user.username,
+        "current_article": session.get('current_article_id', 1),  # default 1st article for display always
+        "current_user": session.get("current_user_id", -1),  # -1 is unkwown user
+        "current_forum": session.get('current_forum_id', 1),  # master
     }
     return render_template('articles/article.html', id=id, data=data_args)
 

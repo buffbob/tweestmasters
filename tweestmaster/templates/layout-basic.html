@@ -43,7 +43,7 @@
           <a class="nav-item nav-link"
              href="{{ url_for('tweests.new_tweest', article_id=data['current_article']) }}">Create Tweest</a>
           <a class="nav-item nav-link"
-             href="{{ url_for('users.user', id=current_user.id) }}">Account</a>
+             href="{{ url_for('users.user', id=current_user.id) }}">My Catalog</a>
           <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
         </div>
         {% else %}
@@ -64,7 +64,7 @@
 
 <main class="container-fluid" >
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8" style="background:#cccccc;">
       <div>{% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
@@ -98,11 +98,6 @@
       </div>
     </div>
   </div>
-
-  <h1>article</h1>
-<h1>{{ data['current_article'] }}</h1>
-  <h1>id____==</h1>
-
 </main>
 
 <footer>
