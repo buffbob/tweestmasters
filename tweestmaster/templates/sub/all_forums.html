@@ -1,0 +1,21 @@
+<div>
+    <h4>Explore other forums</h4>
+
+    {% for forum in data['forums'] %}
+    <div class="p-1" style="background-color:#dddddd;">
+        <div class="p-1" style="color:#777777;line-height:1.0;">
+            <a style="color:red;" href="{{ url_for('forums.show', id=forum.id) }}">{{ forum.name }}</a>
+            <span class="article-sm-font">  {{ forum.description }}</span>
+        </div>
+        <div class="article-sm-font">date created: {{ forum.date_created.strftime('%m-%d-%y') }}
+            <span class="float-right">members({{ forum.users|count }})</span>
+        </div>
+    </div>
+    <hr>
+    <div>
+
+    </div>
+    {% endfor %}
+
+
+</div>

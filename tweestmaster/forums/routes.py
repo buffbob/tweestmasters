@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, flash, redirect, request, abort
+from flask import Blueprint, render_template, url_for, flash, redirect, request, abort, session
 from tweestmaster import db
 from tweestmaster.forums.forms import ForumForm
 from tweestmaster.models import Forum
@@ -22,13 +22,13 @@ def all_forums():
 @forums.route("/forums/new", methods=['GET', 'POST'])
 @login_required
 def new():
+    #todo: neeed to denote forum and article? like in other pages
     form = ForumForm()
     # need to get articles and forum data
     #get from current articles
     if form.validate_on_submit():
-        forum = Forum(name=form.name.data, leader_id=current_user.id,
-                      description = form.description.data, picture=form.picture.data,
-                      forum_type=form.forum_type.data)
+        forum = Forum(name=form.name.data, leader_id=session.get("current_user_id, 0"),
+                      description=form.description.data, picture=form.picture.data, is_public=form.is_public.data, password=form.password.data)
         db.session.add(forum)
         forum.users.append(current_user)
         db.session.commit()
@@ -37,7 +37,10 @@ def new():
     arg_dict={
         "title":'New Forum',
         'legend': 'Start a new Forum',
-        "leader_id": current_user.id
+        "leader_id": current_user.id,
+        "current_article": session.get('current_article_id', 1),  # default 1st article for display always
+        "current_user": session.get("current_user_id", 0),  # 0 is unkwown user
+        "current_forum": session.get('current_forum_id', 1),  # master
     }
     return render_template('forums/new.html', form=form, data=arg_dict)
 
@@ -47,10 +50,12 @@ def new():
 def show(id):
     forum = Forum.query.get_or_404(id)
     arg_dict= {
+        "current_article": session.get('current_article_id', 1),  # default 1st article for display always
+        "current_user": session.get("current_user_id", -1),  # -1 is unkwown user
+        "current_forum_id": session.get('current_forum_id', 1),
         "id":id,
         "forum":forum,
-        "title":forum.name,
-        'legend':'start a new forum'
+        "current_forum_name":forum.name,
     }
     return render_template('forums/show.html', data=arg_dict)
 

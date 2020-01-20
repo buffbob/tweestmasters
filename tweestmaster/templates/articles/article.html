@@ -40,36 +40,36 @@
                 <textarea class="article-content p-2" cols="800" rows="10">{{ data['article'].content }}</textarea>
             </div>
 
-          <!--
-            <pre class="article-content">{{ data["article"].content }}</pre>
-          -->
+            <!--
+              <pre class="article-content">{{ data["article"].content }}</pre>
+            -->
 
         </div>
+    </div>
+    <div>
+        {# each data below is a (tweest,user) tuple #}
+        {% for data in data["tweests_users"] %}
+        <article class="">
+            <div class="sidebar_list_titles">
+                <a href="{{ url_for('tweests.tweest', id=data[0].id) }}">{{ data[0].title }}</a>
+                <div class="sidebar_list_titles">date created: {{ data[0].date_created.strftime('%Y-%m-%d') }}
+                    <span class="text-muted float-right article-sm-font">
+                    <a href="{{ url_for('users.user', id=data[1]) }}">{{ data[2] }}</a>
+                    </span>
+                    <hr>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
     </div>
     {% endblock %}
 </div>
 
 {% block sidebar_main %}
-<div>
-    <h5>Article tweests</h5>
-</div>
+
+{% include "/sub/all_articles_for_a_forum.html" %}
+<div class="p-3"></div>
 <div class="content-section">
-    {# each data below is a (tweest,user) tuple #}
-    {% for data in data["tweests_join"] %}
-    <article class="">
-        <div class="sidebar_list_titles">
-            <a href="{{ url_for('tweests.tweest', id=data[0].id) }}">{{ data[0].title }}</a>
-
-            <div class="sidebar_list_titles">date created: {{ data[0].date_created.strftime('%Y-%m-%d') }}
-                <span class="text-muted float-right article-sm-font">
-        <a href="{{ url_for('users.user', id=data[1].id) }}">{{data[1].id}}</a>
-      </span>
-                <hr>
-            </div>
-        </div>
-    </article>
-    {% endfor %}
-
     <p class='text-muted'>Great Stuff</p>
     <ul class="list-group">
         <li class="list-group-item list-group-item-light">Most Popular Articles</li>

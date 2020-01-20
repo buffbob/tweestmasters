@@ -1,5 +1,4 @@
-from tweestmaster import app, db
-from flask_sqlalchemy import SQLAlchemy
+from tweestmaster import db
 
 import tweestmaster.models as tm
 

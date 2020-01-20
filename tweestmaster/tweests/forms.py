@@ -19,7 +19,7 @@ class UpdateTweestForm(FlaskForm):
 
     title = StringField('Title',
                            validators=[DataRequired(), Length(min=2, max=20)])
-    content = StringField('Edit your content here',
+    content1 = StringField('Edit your content here',
                         validators=[DataRequired(), Email()])
     content2 = FileField('or submit a new file', validators=[Length(min=20, max=5000)])
 

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, flash, redirect, request, current_app
+from flask import Blueprint, render_template, url_for, flash, redirect, request, current_app, session
 from flask_login import login_user, current_user, logout_user, login_required
 import os
 from tweestmaster import db, bcrypt
@@ -18,6 +18,7 @@ def register():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         # noinspection PyArgumentList
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        #todo: add user to the Master forum
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -58,19 +59,19 @@ def login():
 
 @users.route("/user/<int:id>", methods=['GET', 'POST'])
 def user(id):
-    # need to keep track of article, forum, user
-    current_article = 1 # should be last by the admin
-    current_forum = 1 # master
-    current_user = id
+    huh = request.args
     sidebar_items=[]
-    user_of_interest = User.query.filter(User.id==id).first()
     #articles,tweests,reviews are (each, user_of_interest) tuples
-    articles = user_of_interest.articles
-    tweests = user_of_interest.tweests
+    person_of_interest = User.query.filter(User.id==id).first()
+    articles = person_of_interest.articles
+    tweests = person_of_interest.tweests
     # add the article picture for each tweest
     tweests_and_pics = [(tweest, Article.query.filter(Article.id==tweest.article_id).first().pics[0].uri) for tweest in tweests]
-    reviews = user_of_interest.reviews
-    forums = user_of_interest.forums
+    reviews = person_of_interest.reviews
+    forums = person_of_interest.forums
+
+    # current forum name
+    cfn = Forum.query.filter_by(id=session.get('current_forum_id',1)).first().name
 
     lena = len(articles)
     flag='booger'
@@ -83,11 +84,11 @@ def user(id):
         article_pics = []
         flag='no pictures'
 
-
+# use the lengths to display each respectively if necessary in html views
     lent = len(tweests)
     lenr = len(reviews)
-    lengths=(lena,lent,lenr)
-
+    lenf = len(forums)
+    lengths=(lena,lent,lenr,lenf)
 
     if request.method == "GET":   
         # sidebar_items is all_articles of all_forums
@@ -109,22 +110,22 @@ def user(id):
     #image = tiny_image(image_file)
     path = os.path.join(current_app.root_path, "static/raven_tn.jpg")
     arg_dict = {
-        "title":user_of_interest.username,
+        #"title":current_user.username,
         'sidebar_data': sidebar_items,
         "forums":forums,
         "tweests_and_pics":tweests_and_pics,
         "articles":articles,
         "article_pics":article_pics,
         "reviews":reviews,
-        "user_of_interst":user_of_interest,
+        "user_of_interst":current_user,
         "lengths":lengths,
         "flag":flag,
-        "user_id":id,
-        "forum_id":1,
-        #todo: move these to g at some point?
-        "current_article":1, # should be last by the admin
-        "current_forum":1, # master
-        "current_user":id,
+        "current_article":session.get('current_article_id'),
+        "current_forum":session.get('current_forum_id'),
+        "current_user":session.get("current_user_id"),
+        "poi_date_joined":person_of_interest.date_created,
+        "poi_username":person_of_interest.username,
+        "current_forum_name":cfn,
     }
     return render_template('users/users.html', id=id, data=arg_dict)
 

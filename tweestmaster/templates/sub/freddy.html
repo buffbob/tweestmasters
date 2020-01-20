@@ -1,0 +1,15 @@
+<h1>freddy has killed it!</h1>
+
+{% if session.user == "1" %}
+<h1>FRED</h1>
+
+{% else %}
+<h1>BOOKER</h1>
+<h1>{{ session.current_user_id }}dadddy has killed it!</h1>
+{% endif %}
+
+{% if session.current_user_id == 0 %}
+<h1>boogerest1</h1>
+{% else %}
+<h1>snotiest</h1>
+{% endif %}

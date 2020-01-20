@@ -10,6 +10,7 @@ tweests = Blueprint('tweests', __name__)
 @login_required
 def new_tweest(article_id):
     form = TweestForm()
+    correct_content = ""
 # todo: do we need this check :: send article_id with data
     #article_id = request.args.get("article_id")
     #if not article_id:
@@ -24,21 +25,21 @@ def new_tweest(article_id):
     # need to get articles and forum data
     #get from current articles
     if form.validate_on_submit():
-        if form.content1 and form.content2:
-            flash("Question do you want to submit the pasted in content or the file you selected?")
-            return redirect(url_for('tweests.new_tweest'))
-        elif form.content1:
-            correct_content_value = form.content1
-        elif form.content2:
-            correct_content_value = form.content2
+        if form.content1.data and form.content2.data:
+            flash("Question do you want to submit the pasted in content or the file you selected?", "danger")
+            return redirect(url_for('tweests.new_tweest', article_id=article_id))
+        elif form.content1.data:
+            correct_content = form.content1.data
+        elif form.content2.data:
+            correct_content = form.content2.data
         else:
             #
             flash("You must paste in your tweesst or choose a file", "danger")
 # todo: did danger work helppp 1/16?
             return redirect(url_for('tweests.new_tweest', article_id=article_id))
 
-        tweest = Tweest(title=form.title.data, content=correct_content_value.data,
-                      user_id=current_user.id, forum_id=forum_id,
+        tweest = Tweest(title=form.title.data, user_id=current_user.id,
+                      content=correct_content, forum_id=forum_id,
                       article_id=article_id)
         db.session.add(tweest)
         db.session.commit()

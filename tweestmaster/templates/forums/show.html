@@ -1,4 +1,10 @@
-{% extends "layout.html" %}
+{% extends "layout-basic.html" %}
+
+
+
+{% block main_header %}
+{% endblock %}
+
 {% block main_content %}
 <h4>{{ data['forum'].name }}</h4>
 <p>{{ data['forum'].description }}</p>

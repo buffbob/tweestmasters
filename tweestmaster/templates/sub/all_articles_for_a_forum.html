@@ -1,0 +1,23 @@
+<div>
+    <h5>Articles<span class="article-sm-font" style="color:#222222;">(forum={{ data["current_forum_name"] }})</span></h5>
+    {% for art in data['articles'] %}
+    {% if art.title %}
+    <div class="get_class">{{ art.title }}
+        <span class="float-right article-sm-font purple1_text">{{ art.date_created.strftime('%m-%d-%Y') }}
+
+
+
+            <span class="pl-2">num tweets</span>
+
+
+
+
+
+        </span>
+    </div>
+    <hr>
+    {% else %}
+    <h4>booger</h4>
+    {% endif %}
+    {% endfor %}
+</div>

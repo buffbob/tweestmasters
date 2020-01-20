@@ -1,11 +1,11 @@
 {% extends "layout-basic.html" %}
 
 {% block main_header %}
-<div class="text-center">
-  <h4>
-    Today's Feature Article
-  </h4>
+<div>
+  <span class="pl-2 headline">Today's feature article</span>
+
 </div>
+
 <div class="carousel" data-ride="carousel" id="carouselExampleIndicators">
   <ol class="carousel-indicators">
     <li class="active" data-slide-to="0" data-target="#carouselExampleIndicators"></li>
@@ -40,34 +40,19 @@
 </div>
 
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <div class="text-center mb-3 mt-1" style="background-color:#dddddd">
-  
+<div class="container pt-4" style="background:#cccccc;">
     <strong class="article-title-lg m-2">{{ data['article_title'] }}</strong>
-    </div>
-    </div>
-  </div>
-  
+
   <div class="row">
-    <textarea class="article-content p-2" cols="800" rows="10">{{ data['article_content'] }}</textarea>
+    <textarea class="article-content m-2" cols="800" rows="10">{{ data['article_content'] }}</textarea>
   </div>
 </div>
-
 {% endblock %}
 
 
 {% block main_content %}
-
-<div class="row mb-2 mt-4" style="background-color:#dddddd">
-  <div class="col-sm-10">
-    <strong class="article-title-md">Tweests- {{ data['article_title'] }}</strong>
-  </div>
-  <div class="col-sm-2 small-count mt-1">tweests({{ data['num_tweests'] }})</div>
-</div>
-
-
+<h3 class="pt-2">tweests:</h3>
+<hr>
 {% for tup in data['tweests_users'] %}
 <article class="media content-section">
   <div class="container">
@@ -76,8 +61,8 @@
         <img class="rounded-circle" id="mc-home-user_image"
              src="{{ url_for('static', filename='profile_pics/' + tup[1].image_file) }}">
         <div class="">
-          <a class="article-sm-font float-left" href="{{ url_for('users.user', id=tup[1].id) }}">{{
-            tup[1].username}}</a>
+          <a class="article-sm-font float-left" href="{{ url_for('users.user', id=tup[1].id) }}">
+            {{ tup[1].username }}</a>
         </div>
       
       </div>
@@ -110,13 +95,15 @@
 
 
 {% block sidebar_header %}
+{% include "sub/all_forums.html" %}
+{% endblock %}
+
+{% block sidebar_main %}
+<div class="m-4"></div>
+{% include "sub/sidebar_links.html" %}
+{% endblock %}
+<!--
 <div class="content-section">
-  {% if current_user.username %}
- <h1>{{ current_user.username }}__shit__{{ current_user.id }}__boog__{{ current_user.id }}</h1>
-{% else %}
-<h1>boogers- </h1>
-{% endif %}
-<h1>*****##******</h1>
   {% if data['filter']=='articles' %}
   <form method="POST">
     <label class="radio-inline">
@@ -126,8 +113,8 @@
       <input checked name="radio" onclick="this.form.submit()" type="radio" value="articles"/>Articles
     </label>
   </form>
-  
-  {% for each in data['sidebar_items'] %}
+
+  {% for each in data['sidebar_articles'] %}
   <article class="content-section article-md-font">
     <div class="text-center article-lg-font">
       <a href="{{ url_for('articles.article',id=each[0].id) }}">{{ each[0].title }}</a>
@@ -136,12 +123,12 @@
     <div class="article-sm-font">forum: <span class="article-md-font">{{ each[0].forum_id }}</span></div>
     <div class=""><span>{{ each[0].date_created.strftime('%m-%d-%Y') }}</span><span class="article-sm-font float-right">tweests({{ each[1] }})</span>
     </div>
-    <div class="article-sm-font">tweests<span>({{ each[1] }})</span>
-    </div>
+
   </article>
   {% endfor %}
   {% endif %}
   {% if filter=='forums' %}
+  -->
   <!--  <form method="POST">
       <label class="radio-inline">
         <input checked name="radio" onclick="this.form.submit()" type="radio" value="forums"/>Forums
@@ -161,8 +148,8 @@
       <div class="sidebar_list_titles">articles<span class="blue_text">({{ each[2] }})</span><span class="float-right">members<span
           class="blue_text">({{ each[3] }})</span></span></div>
     </article>
-    {% endfor %}-->
-  <div>BOOGERS</div>
-  {% endif %}
-</div>
-{% endblock %}
+
+    {% endfor %}
+    {% endif %}
+    -->
+

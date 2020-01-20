@@ -1,16 +1,11 @@
 {% extends "layout-basic.html" %}
 
 
-{% block main_header %}
-{% endblock %}
-
-
-{% block main_content%}
+{% block main_content %}
 <div>
-  <h4>{{ data['title'] }}'s: Home Page</h4>
+  <h4>{{ data['poi_username'] }}'s: Home Page</h4>
 </div>
 <hr>
-<div>
   {% if data['lengths'][0] > 0 %}
   <h5>Articles</h5>
   <hr>
@@ -56,8 +51,8 @@
         <div class="col-sm-9">
           
           <strong class="article-title-md">
-            <a class="mt-2 float-left" href="{{ url_for('tweests.tweest', id=tweest[0].id) }}" style="color:#333333;">{{
-              tweest[0].title }}
+            <a class="mt-2 float-left" href="{{ url_for('tweests.tweest', id=tweest[0].id) }}" style="color:#333333;">
+              {{ tweest[0].title }}
             </a>
           </strong>
         
@@ -120,23 +115,26 @@
   {% endblock %}
   
   
-  {% block sidebar %}
-  {#
-  <div>
-    <h5>User stats</h5>
-    <div>date joined: {{ user.date_created }}</div>
-    <div>Number of Articles:</div>
-    <div>Number of Tweests: ()</div>
-    <div>Number of Reviews:</div>
-    <div>Number of Forums: 0:::: refactor!!!!</div>
+  {% block sidebar_header %}
+
+    <h5 class='text-muted'>{{ data['poi_username'] }} use stats:</h5>
+<div class = "text-right get_class">
+    <div>date joined: {{ data['poi_date_joined'].strftime('%Y-%m-%d') }}</div>
+    <div>Number of Articles: {{ data.get('lengths')[0] }}</div>
+    <div>Number of Tweests: {{ data.get('lengths')[1] }}</div>
+    <div>Number of Reviews: {{ data.get('lengths')[2] }}</div>
+    <div>Number of Forums: {{ data.get('lengths')[3] }}</div>
   </div>
   <hr>
-  <div class='text-muted'>Great Stuff</div>
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-light">Most Popular Articles</li>
-    <li class="list-group-item list-group-item-light">Most Popular tweests</li>
-    <li class="list-group-item list-group-item-light">Most followed Forums</li>
-    <li class="list-group-item list-group-item-light">wildcard</li>
-  </ul>
-</div> #}
+{% endblock %}
+
+{% block sidebar_main %}
+<div class="mt-4 mb-4">
+
+</div>
+<div class="p-2">
+ <a href="{{ url_for('forums.new') }}"><button onclick="">create a new forum</button>
+ </a>
+</div>
+{% include "sub/sidebar_links.html" %}
 {% endblock %}
