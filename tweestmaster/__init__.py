@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 #from flask_modus import Modus
 #use this later during deployment
-#from tweestmaster.config import Config
+from tweestmaster.config import Config
 
 
 
@@ -29,8 +29,9 @@ def create_app():
 
 
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = '4fb766da1c040c452e02703a752d233f'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+    app.config.from_object(Config)
+    # app.config['SECRET_KEY'] = '4fb766da1c040c452e02703a752d233f'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
     app.config["SQLALCHEMY_ECHO"] = True
     db.init_app(app)
     bcrypt.init_app(app)
