@@ -6,8 +6,8 @@ from flask_login import current_user
 from tweestmaster.models import User
 
 class TweestForm(FlaskForm):
-    title = StringField('Your tweesst title', validators=[DataRequired(), Length(min=2, max=100)])
-    content1 = TextAreaField("Paste your tweesst content here")
+    title = StringField('Your tweest title', validators=[DataRequired(), Length(min=2, max=100)])
+    content1 = TextAreaField("Paste your tweest content here")
     # need validation that tweest if not none is of right length
     content2 = FileField('or choose file')
     # need validation that content1 and content2 are both not none.

@@ -16,6 +16,7 @@ articles = Blueprint('articles', __name__)
 @articles.route("/article/<int:id>", methods=['GET', 'POST'])
 @login_required
 def article(id):
+    session['current_article_id'] = id
     article = Article.query.filter_by(id=id).first()
     user = User.query.filter_by(id=article.user_id).first()
     assert (article != False)
@@ -35,29 +36,44 @@ def article(id):
     path = "raven_tn.jpg"
     all_articles = Article.query.filter_by(forum_id=f_id) # all articles for a forum
     all_forums = Forum.query.all()
-
+    authors = [User.query.filter_by(id=article.user_id).first().username for article in all_articles]
 
     user_ids = [tweest.user_id for tweest in tweests]
     user_names = [User.query.filter_by(id=each_id).first().username for each_id in user_ids]
 
     t_u = zip(tweests, user_ids, user_names)
+    tweests_per_article = [len(e.tweests) for e in all_articles]
 
+    cun = "not logged in"
+    if current_user.is_authenticated:
+        cun = current_user.username
 
     # image = tiny_image(image_file)
     # to be rendered in sidebar
     tweests_join = db.session.query(Tweest, User).filter(Tweest.article_id == id).all()
+    article_id = session['current_article_id']
+    tweests_users = db.session.query(Tweest, User).join(User).filter(Tweest.article_id == article_id).order_by(Tweest.id.asc()).all()
+
+
     data_args = {
+        "z_art_authors": zip(current_forum.articles, authors),
+        "art_auth": zip(all_articles, authors, tweests_per_article),  #
+        "tweests_users":tweests_users,
+        "current_user_name":cun,
         "tweests":tweests,
-        "tweests_users":t_u,
+        #"tweests_users":t_u,
         "id":id,
         "articles":all_articles,
         "forums":all_forums,
         "tweests_join":tweests_join,
         "images":images,
+        "article_images":images,
         "forum_id":f_id,
         "path":path,
         "article":article,
         "title":"Article",
+        "article_title":article.title,
+        "article_content":article.content,
         "legend": "an article by " + user.username,
         "current_article": session.get('current_article_id', 1),  # default 1st article for display always
         "current_user": session.get("current_user_id", -1),  # -1 is unkwown user

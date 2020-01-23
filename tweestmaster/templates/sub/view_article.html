@@ -1,21 +1,4 @@
-{% extends "layout-basic.html" %}
 
-
-{% block main_header %}
-<div class="pb-4">
-    <h3>{{ data['forum'].name }}
-        <span class="ml-3 article-lg-font">{{ data['forum'].description }}</span>
-    </h3>
-    <hr>
-</div>
-
-{% endblock %}
-
-{% block main_content %}
-
-<div>
-</div>
-{% if data['article_images']|length %}
 <div class="carousel" data-ride="carousel" id="carouselExampleIndicators">
     <ol class="carousel-indicators">
         <li class="active" data-slide-to="0" data-target="#carouselExampleIndicators"></li>
@@ -52,45 +35,11 @@
 
 <div class="container pt-4" style="background:#cccccc;">
     <strong class="article-title-lg m-2">{{ data['article_title'] }}</strong>
-    <span class="float-right"><a href="{{ url_for('tweests.new_tweest', article_id=data['id']) }}">create Tweest</a></span>
+
+        <span class="float-right"><a href="#">create Tweest</a></span>
 
 
     <div class="row">
         <textarea class="article-content m-2" cols="800" rows="10">{{ data['article_content'] }}</textarea>
     </div>
 </div>
-{% endif %}
-
-<h4 class="pt-4">Forum Articles</h4>
-<div class="pb-4" style="">
-    <table class="" style="width:100%; background-color:#dddddd;">
-        <tr>
-            <th>date</th>
-            <th>title</th>
-            <th>author</th>
-            <th>num tweests</th>
-        </tr>
-        {% for art in data['z_art_authors'] %}
-        <tr>
-            <td>{{art[0].date_created.strftime("%h-%d-%y") }}</td>
-            <td><a href="{{ url_for('articles.article', id=art[0].id) }}">{{ art[0].title }}</a></td>
-            <td>{{ art[1] }}</td>
-            <td>{{ art[0].tweests|count }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
-
-
-{% endblock %}
-{% block sidebar_header %}
-{% include "sub/stats_div.html" %}
-<h5 class="text-center">This forum has {{ data['forum'].users|count }} members</h5>
-<hr>
-{% for each in data['forum'].users %}
-<span><a href="{{ url_for('users.user', id=each.id) }}">{{ each.username }} </a></span>
-{% endfor %}
-{% endblock %}
-{% block sidebar_main %}
-{% include "sub/short_all_tweests.html" %}
-{% endblock %}

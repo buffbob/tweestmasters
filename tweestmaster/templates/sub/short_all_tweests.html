@@ -1,0 +1,18 @@
+{% with d = data['tweests_tweest_authors'] %}
+<div>
+    Article Tweests
+</div>
+
+
+{% if d is defined %}
+<h1>defined</h1>
+{% else %}
+<h2>booger</h2>
+{% endif %}
+
+{% for each in d %}
+<div>
+    <div>{{ each[1].username }}</div>
+</div>
+{% endfor %}
+{% endwith %}

@@ -6,15 +6,13 @@ from tweestmaster.models import Forum
 
 
 class ForumForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
-    description = TextAreaField("Describe your forum", validators=[DataRequired()])
-    picture = FileField("Select your Forum photo", validators=[FileAllowed(['jpg', 'png'])])
-    is_public = BooleanField("Make Forum private", default=False)
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=4, max=64)])
-    confirm_password = PasswordField('Confirm Password',
-                                     validators=[DataRequired(), EqualTo('password')])
+    name = StringField('name your forum', validators=[DataRequired()])
+    description = TextAreaField("give a short description of your forum", validators=[DataRequired()])
+    picture = FileField("select a forum photo", validators=[FileAllowed(['jpg', 'png'])])
+    is_private = BooleanField("make forum private", default=False)
     submit = SubmitField('Post')
 
+    #todo: set up this validator?
     def validate_name(self,name):
         forum = Forum.query.filter_by(name=name.data).first()
         if forum:

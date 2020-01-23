@@ -3,84 +3,86 @@
 
 {% block main_content %}
 
-<div class="container border border-secondary pt-2">
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <h5>Create a tweest for the feature article</h5>
-    </div>
-  </div>
-  <div class="row">
-    <img class="img-fluid p-3" id="create_tweest_article_image"
-         src="{{ url_for('static', filename='article_images/' + data['image'].uri) }}">
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <div class="text-center mb-3 mt-1 title-highlight">
-        
-        <strong class="article-title-lg m-2">{{ data['article_title'] }}</strong>
-      </div>
-    </div>
-  </div>
-  
-  <div class="row">
-    <textarea class="article-content p-2" cols="800" rows="10">{{ data['article_content'] }}</textarea>
-  </div>
-</div>
+
 <div class="mt-4 title-highlight">
-  <h5 class="p-3">Enter tweest details:</h5>
+    <h5 class="p-3">Enter tweest details:</h5>
 </div>
 
 
 <div class="content-section">
-  <form action="" method="POST">
-    {{ form.hidden_tag() }}
-    <fieldset class="form-group">
-      <legend class="border-bottom mb-4">{{ legend }}</legend>
-      <div class="form-group">
-        {{ form.title.label(class="form-control-label") }}
-        {% if form.title.errors %}
-        {{ form.title(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.title.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                {{ form.title(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.content1.label(class="form-control-label") }}
+                {% if form.content1.errors %}
+                {{ form.content1(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.content1.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.content1(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.content2.label(class="form-control-label") }}
+                {% if form.content2.errors %}
+                {{ form.content2(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.content2.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.content2(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
         </div>
-        {% else %}
-        {{ form.title(class="form-control form-control-lg") }}
-        {% endif %}
-      </div>
-      <div class="form-group">
-        {{ form.content1.label(class="form-control-label") }}
-        {% if form.content1.errors %}
-        {{ form.content1(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.content1.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %}
-        {{ form.content1(class="form-control form-control-lg") }}
-        {% endif %}
-      </div>
-      <div class="form-group">
-        {{ form.content2.label(class="form-control-label") }}
-        {% if form.content2.errors %}
-        {{ form.content2(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.content2.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %}
-        {{ form.content2(class="form-control form-control-lg") }}
-        {% endif %}
-      </div>
-    </fieldset>
-    <div class="form-group">
-      {{ form.submit(class="btn btn-outline-info") }}
-    </div>
-  </form>
+    </form>
 </div>
+{% endblock %}
+{% block sidebar_header %}
+<div>
+    {% include "sub/stats_div.html" %}
+</div>
+<div class="border border-rounded">
+  <div class="title-highligh">
+    <div>Current article:</div>
+    <div class="pl-2 headline" style="background-color:#dddddd;">{{ data['article_title']}}</div>
+
+  </div>
+  <div class="row">
+    <img class="img-fluid p-3"
+         src="{{ url_for('static', filename='article_images/' + data['image'].uri) }}">
+  </div>
+
+  <div class="container">
+    <div class="row"><textarea class="article-content p-2" cols="100" rows="10">{{ data['article_content'] }}</textarea>
+    </div>
+  </div>
+</div>
+<div class="p-2"></div>
+
+{% endblock %}
+{% block sidebar_main %}
+{% include "sub/sidebar_links.html" %}
 {% endblock %}

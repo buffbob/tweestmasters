@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, flash, redirect, request, abort, session
 from tweestmaster import db
 from tweestmaster.tweests.forms import TweestForm
-from tweestmaster.models import Tweest,Article,ArticlePicture,User
+from tweestmaster.models import Tweest,Article,ArticlePicture,User,Forum
 from flask_login import current_user, login_required
 from datetime import datetime
 tweests = Blueprint('tweests', __name__)
@@ -10,6 +10,8 @@ tweests = Blueprint('tweests', __name__)
 @login_required
 def new_tweest(article_id):
     form = TweestForm()
+    cfn = Forum.query.filter_by(id=session.get('current_forum_id',1)).first().name
+    cun = User.query.filter_by(id=session["current_user_id"]).first().username
     correct_content = ""
 # todo: do we need this check :: send article_id with data
     #article_id = request.args.get("article_id")
@@ -47,8 +49,10 @@ def new_tweest(article_id):
         return redirect(url_for('main.home'))
 
     arg_dic = {
+        "current_user_name":cun,
+        "current_forum_name":cfn,
         "title":"New Tweest",
-        "article_id": article_id,
+        "article_id":article_id,
         "article_title": article.title,
         "forum_id": forum_id,
         "article_content":article.content,

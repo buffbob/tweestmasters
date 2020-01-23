@@ -51,10 +51,9 @@ class Forum(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50),  nullable=False, unique=True)
     description = db.Column(db.String(200), nullable=False)
-    picture = db.Column(db.String(100), nullable=False, default='default_landscape.jpg')
+    picture = db.Column(db.String(100), nullable=False, default='site_images/default_landscape.jpg')
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    is_public = db.Column(db.Boolean, nullable=False, default=True)
-    password = db.Column(db.String(50), nullable=False, default="password")
+    is_private = db.Column(db.Boolean, nullable=False, default=False)
     # foreign key(s)
     leader_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     # relationships

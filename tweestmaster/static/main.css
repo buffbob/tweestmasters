@@ -193,3 +193,11 @@ a.at_hover:hover{
 .title-highlight{
     background-color:#dddddd;
 }
+
+
+.create_acct_btns {
+
+}
+.create_acct_btns:hover {
+    color:red;
+}

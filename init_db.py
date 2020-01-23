@@ -1,7 +1,11 @@
-from tweestmaster import db
+from tweestmaster import db, bcrypt
 
 import tweestmaster.models as tm
-
+import secrets
+# admin pass
+admin_pass = 'f7e3cac9291486da22830268603ac469'
+# hashed pass
+pwh = bcrypt.generate_password_hash(admin_pass)
 
 # add tables
 db.create_all()
@@ -29,9 +33,13 @@ Plastic waste and pollution are a burden to cities and communities to pay for wa
 Major brand companies, including McDonald’s, Dunkin Donuts, Baskin Robbins and Wendy’s, have stopped distributing EPS foam consumer products to remove their valuable logos from the environmentally harmful EPS foam products.
 """.replace("\n","")
 
-u1 = tm.User(username="Admin", email='admin@tweestmasters.com', password='admin')
+u1 = tm.User(username="Admin", email='admin@tweestmasters.com', password=pwh)
 site_forum = tm.Forum(name='Master', description = "tweestmasters home forum. Striving to be our best.", leader_id=1)
+# and add them to membership in the Master forum
+site_forum.users.append(u1)
+# a second forum and add the Admin as a user
 nobody = tm.Forum(name='Long live Manatees', description = "A site devoted to environmentalists", leader_id=2)
+nobody.users.append(u1)
 
 # create article pictures for article one
 ap1 = tm.ArticlePicture(uri="index1.jpg", article_id=1)
@@ -55,6 +63,10 @@ a3 = tm.Article(title="Man's Greatest Invention?... is killing us!", content=art
 # now add 2 more users
 u2 = tm.User(username="BuffBob", email="lastgulch@gmail.com", password="password")
 u3 = tm.User(username="Squirrel", email="squirrel@gmail.com", password="password")
+# and add them to membership in the Master forum
+site_forum.users.append(u2)
+site_forum.users.append(u3)
+
 db.session.add(ap1)
 db.session.add(ap2)
 db.session.add(ap3)
@@ -76,8 +88,7 @@ db.session.add(u2)
 db.session.add(u3)
 db.session.commit()
 
-#todo:  add all users to site forum, add users 2,3 to nobody
-
+nobody.users.append(u2)
 
 # u2 will write 2 tweests on
 t1_content="""when i was young, things were not so rosy either. we used to practice bomb drills 
@@ -87,12 +98,22 @@ t2_content="""things actually have gone down hill consederable. i used to walk m
 and it would wait until lunch for me. Then he would share some love and wait by my bike until the 
 bell rang. tail would start wagging and assumming i was not summoned to the office I would be at 
 her side within minutes.""".replace('\n','')
+
+t3_content = """Admit it. You’ve always wanted the ability to magically befriend wild animals, like the Beastmaster or some Disney princess. But while most of us can only dream of communicating with other creatures, Gabi Mann is pretty tight with the animal kingdom. This eight-year-old from Seattle is best friends with a flock of crows. In fact, they even give her gifts.
+
+This incredibly odd friendship began when she was just four and would constantly spill her food. The neighborhood birds took note, and they were soon watching Gabi every time she stepped outside, just in case she dropped some sort of tasty treat. As Gabi grew older, she intentionally started sharing her lunch with the crows, and it was soon an everyday thing. With her mother’s help, Gabi kept a bird feeder full of peanuts and regularly tossed dog food onto the lawn.
+
+And the crows started leaving presents. Once, it was an earring. Another time, it was a broken lightbulb. They left a button, a paper clip, a rock, and a Lego piece. Each time, the birds would gobble up the food and then leave a token of their appreciation. Soon, Gabi was collecting their little gifts, bagging each item and marking every present with the date, description, and the location where she found it. And even though she really loves the rusty screw and the black zipper, her favorite gift is a little plastic heart. As she told the BBC, “It’s showing me how much they love me.”""".replace('\n','')
+
+
 t1 = tm.Tweest(title="Not so much doom- please! It has been much worse in the recent past!", content=t1_content,user_id=2,forum_id=1,article_id=1)
 t2 = tm.Tweest(title="This is Just the Beginning of a Cascade!", content=t2_content,user_id=2,forum_id=1,article_id=1)
+t3 = tm.Tweest(title="Odd Friends", content=t3_content, user_id=3, forum_id=1, article_id=2)
 r1 = tm.Review(score=55,content="is this as good as you can do. start with spellchecker and move on to the dictionary...", tweest_id=3, forum_id=2,user_id=3)
 
 db.session.add(t1)
 db.session.add(t2)
+db.session.add(t3)
 db.session.add(r1)
 db.session.commit()
 

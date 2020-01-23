@@ -1,0 +1,9 @@
+  <h5 class='text-muted'>{{ data['poi_username'] }} use stats:</h5>
+<div class = "text-right get_class">
+    <div>date joined: {{ data['poi_date_joined'].strftime('%Y-%m-%d') }}</div>
+    <div>Number of Articles: {{ data.get('lengths')[0] }}</div>
+    <div>Number of Tweests: {{ data.get('lengths')[1] }}</div>
+    <div>Number of Reviews: {{ data.get('lengths')[2] }}</div>
+    <div>Number of Forums: {{ data.get('lengths')[3] }}</div>
+  </div>
+  <hr>

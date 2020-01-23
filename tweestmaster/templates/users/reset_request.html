@@ -1,5 +1,5 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "layout-basic.html" %}
+{% block main_content %}
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
@@ -24,4 +24,4 @@
             </div>
         </form>
     </div>
-{% endblock content %}
+{% endblock %}

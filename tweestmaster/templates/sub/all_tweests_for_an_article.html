@@ -1,0 +1,46 @@
+<h3 class="pt-2">tweests:</h3>
+<hr>
+{% for tup in data['tweests_users'] %}
+<article class="media content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <img class="rounded-circle" id="mc-home-user_image"
+                src="{{ url_for('static', filename='profile_pics/' + tup[1].image_file) }}">
+                <div class="">
+                    <a class="article-sm-font float-left" href="{{ url_for('users.user', id=tup[1].id) }}">
+                        {{ tup[1].username }}</a>
+                </div>
+            </div>
+            <div class="col-sm-8">
+
+                <strong class="article-title-md">
+                    <a class="mt-2 float-left" href="{{ url_for('tweests.tweest', id=tup[0].id) }}"
+                       style="color:#333333;">{{
+                        tup[0].title }}
+                    </a>
+                </strong>
+
+            </div>
+
+            {#
+            only review if tweest.user_id != current_user.id
+            #}
+            {% if tup[0].user_id != current_user.id %}
+            <div class="col-sm-2">
+                <a href="{{ url_for('forums.new') }}"><button onclick="">review</button></a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <textarea class="article-content mb-0" cols="800" rows="5">{{ tup[0].content }}</textarea>
+        </div>
+
+        <div>
+            <small class="text-muted float-right" style="font-size:10px;">
+                <span>posted on <span>{{ tup[0].date_created.strftime('%Y-%m-%d') }}</span></span>
+            </small>
+        </div>
+    </div>
+</article>
+{% endfor %}

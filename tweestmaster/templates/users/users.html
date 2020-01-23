@@ -3,138 +3,141 @@
 
 {% block main_content %}
 <div>
-  <h4>{{ data['poi_username'] }}'s: Home Page</h4>
+    <div><img class="rounded-circle article-img" src="{{ data['image_file'] }}">
+        <span class="headline">{{ data['poi_username'] }}'s: Home Page</span>
+    </div>
 </div>
 <hr>
-  {% if data['lengths'][0] > 0 %}
-  <h5>Articles</h5>
-  <hr>
-  {% for article in data['articles'] %}
-  <article class="media content-section">
+{% if data['lengths'][0] > 0 %}
+<h5>Articles</h5>
+
+{% for article in data['articles'] %}
+<article class="media content-section">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-1">
-          <a class="mt-2 float-left" href="{{ url_for('articles.article', id=article.id) }}">
-            <img class="user-mc-article-image rounded"
-                 src="{{ url_for('static', filename='article_images/' + article.pics[0].uri) }}"></a>
+        <div class="row">
+            <div class="col-sm-1">
+                <a class="float-left" href="{{ url_for('articles.article', id=article.id) }}">
+                    <img class="user-mc-article-image rounded"
+                         src="{{ url_for('static', filename='article_images/' + article.pics[0].uri) }}"></a>
+            </div>
+            <div class="col-sm-9">
+                <strong class="article-title-md ml-3 ">
+                    <a class="" href="{{ url_for('articles.article', id=article.id) }}"
+                       style="color:#333333;">{{
+                        article.title }}
+                    </a>
+                </strong>
+            </div>
+            <div class="col-sm-2">
+                <small class="text-muted article-sm-font">
+                    <span>posted on <span>{{ article.date_created.strftime('%Y-%m-%d') }}</span></span>
+                </small>
+            </div>
         </div>
-        <div class="col-sm-9">
-          <strong class="article-title-md">
-            <a class="mt-2 float-left" href="{{ url_for('articles.article', id=article.id) }}" style="color:#333333;">{{
-              article.title }}
-            </a>
-          </strong>
+        <div class="row">
+            <textarea class="article-content mb-0" cols="800" rows="5">{{ article.content }}</textarea>
         </div>
-        <div class="col-sm-2">
-          <small class="text-muted article-sm-font">
-            <span>posted on <span>{{ article.date_created.strftime('%Y-%m-%d') }}</span></span>
-          </small>
-        </div>
-      </div>
-      <div class="row">
-        <textarea class="article-content mb-0" cols="800" rows="5">{{ article.content }}</textarea>
-      </div>
     </div>
-  </article>
-  {% endfor %}
-  {% endif %}
-  {% if data['lengths'][1] > 0 %}
-  <h5>Tweests</h5>
-  {% for tweest in data['tweests_and_pics'] %}
-  <article class="media content-section">
+</article>
+{% endfor %}
+{% endif %}
+{% if data['lengths'][1] > 0 %}
+<h5>Tweests</h5>
+{% for tweest in data['tweests_and_pics'] %}
+<article class="media content-section">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-1">
-          <img class="user-mc-article-image rounded"
-               src="{{ url_for('static', filename='article_images/' + tweest[1]) }}">
+        <div class="row">
+            <div class="col-sm-1">
+                <a class="float-left" href="{{ url_for('tweests.tweest', id=tweest[0].id) }}">
+                <img class="user-mc-article-image rounded"
+                     src="{{ url_for('static', filename='article_images/' + tweest[1]) }}"></a>
+            </div>
+            <div class="col-sm-9">
+                <strong class="article-title-md ml-3">
+                    <a class="" href="{{ url_for('tweests.tweest', id=tweest[0].id) }}"
+                       style="color:#333333;">
+                        {{ tweest[0].title }}
+                    </a>
+                </strong>
+            </div>
+            <div class="col-sm-2">
+                <small class="text-muted float-right" style="font-size:10px;">
+                    <span>posted on <span>{{ tweest[0].date_created.strftime('%Y-%m-%d') }}</span></span>
+                </small>
+            </div>
         </div>
-        <div class="col-sm-9">
-          
-          <strong class="article-title-md">
-            <a class="mt-2 float-left" href="{{ url_for('tweests.tweest', id=tweest[0].id) }}" style="color:#333333;">
-              {{ tweest[0].title }}
-            </a>
-          </strong>
-        
+        <div class="row">
+            <textarea class="article-content mb-0" cols="800" rows="3">{{ tweest[0].content }}</textarea>
         </div>
-        <div class="col-sm-2">
-          <small class="text-muted float-right" style="font-size:10px;">
-            <span>posted on <span>{{ tweest[0].date_created.strftime('%Y-%m-%d') }}</span></span>
-          </small>
-        </div>
-      </div>
-      <div class="row">
-        <textarea class="article-content mb-0" cols="800" rows="3">{{ tweest[0].content }}</textarea>
-      </div>
 
     </div>
-  </article>
-  
-  
-  {% endfor %}
-  {% endif %}
-  {% if data['lengths'][2] > 0 %}
-  <hr>
-  <h5>Reviews</h5>
-  {% for review in data['reviews'] %}
-  <article class="media content-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-2">
-          <img class="mc-home-user_image"
-               src="{{ url_for('static', filename='article_images/index1.jpg') }}">boogers
-        </div>
-        <div class="col-sm-10">
-          
-          <strong class="article-title-md">
-            <a class="mt-2 float-left" href="{{ url_for('tweests.tweest', id=1) }}" style="color:#333333;">{{
-              review.title }}
-            </a>
-          </strong>
-        
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <a class="article-sm-font float-left" href="{{ url_for('users.user', id=1) }}"> username </a>
-        </div>
-      
-      </div>
-      <div>
-        <p class="article-content mb-0">{{ review.content }}</p>
-      </div>
-      <div>
-        <small class="text-muted float-right" style="font-size:10px;">
-          <span>posted on <span>{{ review.date_created.strftime('%Y-%m-%d') }}</span></span>
-        </small>
-      </div>
-    </div>
-  </article>
-  {% endfor %}
-  {% endif %}
-  {% endblock %}
-  
-  
-  {% block sidebar_header %}
+</article>
 
-    <h5 class='text-muted'>{{ data['poi_username'] }} use stats:</h5>
-<div class = "text-right get_class">
-    <div>date joined: {{ data['poi_date_joined'].strftime('%Y-%m-%d') }}</div>
-    <div>Number of Articles: {{ data.get('lengths')[0] }}</div>
-    <div>Number of Tweests: {{ data.get('lengths')[1] }}</div>
-    <div>Number of Reviews: {{ data.get('lengths')[2] }}</div>
-    <div>Number of Forums: {{ data.get('lengths')[3] }}</div>
-  </div>
-  <hr>
+
+{% endfor %}
+{% endif %}
+{% if data['lengths'][2] > 0 %}
+<hr>
+<h5>Reviews</h5>
+{% for review in data['reviews'] %}
+<article class="media content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <img class="mc-home-user_image"
+                     src="{{ url_for('static', filename='article_images/index1.jpg') }}">boogers
+            </div>
+            <div class="col-sm-10">
+
+                <strong class="article-title-md">
+                    <a class="mt-2 float-left" href="{{ url_for('tweests.tweest', id=1) }}" style="color:#333333;">{{
+                        review.title }}
+                    </a>
+                </strong>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <a class="article-sm-font float-left" href="{{ url_for('users.user', id=1) }}"> username </a>
+            </div>
+
+        </div>
+        <div>
+            <p class="article-content mb-0">{{ review.content }}</p>
+        </div>
+        <div>
+            <small class="text-muted float-right" style="font-size:10px;">
+                <span>posted on <span>{{ review.date_created.strftime('%Y-%m-%d') }}</span></span>
+            </small>
+        </div>
+    </div>
+</article>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block sidebar_header %}
+{% include "sub/stats_div.html" %}
+{% include "sub/user_stats.html" %}
 {% endblock %}
 
 {% block sidebar_main %}
 <div class="mt-4 mb-4">
-
 </div>
 <div class="p-2">
- <a href="{{ url_for('forums.new') }}"><button onclick="">create a new forum</button>
- </a>
+    {% if current_user.id == data['poi_id']%}
+    <a class="" href="{{ url_for('forums.new') }}">
+        <button class="btn btn-secondary" onclick="">create forum</button>
+    </a>
+    <a href="{{ url_for('articles.new_article') }}">
+        <button class="btn btn-secondary create_acct_btns" onclick="">create article</button>
+    </a>
+    <a href="{{ url_for('users.edit_account', id=current_user.id) }}">
+        <button class="btn btn-secondary" onclick="">edit profile</button>
+    </a>
+
+    {% endif %}
 </div>
 {% include "sub/sidebar_links.html" %}
-{% endblock %}
+{% endblock %}s

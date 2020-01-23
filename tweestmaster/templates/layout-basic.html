@@ -25,7 +25,7 @@
                 <img alt="Flower" class="rounded"
                      src="{{ url_for('static', filename='raven_tn.jpg')}}" title="White Flower">
             </a>
-            {% if data["current_forum_name"] is defined %}
+            {% if data.get('current_forum_name') is defined %}
             <a class="navbar-brand mr-1" href="{{ url_for('main.home') }}">TweestMasters- </a>
             <span class="article-title muted">{{ data.get('current_forum_name') }}</span>
             {% else %}
@@ -40,9 +40,12 @@
                 {% if current_user.is_authenticated %}
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav ml-auto">
+
+                    {#
                     <a class="nav-item nav-link"
                        href="{{ url_for('tweests.new_tweest', article_id=session.get('current_article_id', 1)) }}">Create
                         Tweest</a>
+                    #}
                     <a class="nav-item nav-link"
                        href="{{ url_for('users.user', id=current_user.id) }}">My Catalog</a>
                     <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
