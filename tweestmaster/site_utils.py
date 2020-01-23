@@ -6,7 +6,6 @@ from tweestmaster import mail,db
 from flask import url_for, current_app
 import secrets
 from flask_mail import Message
-from tweestmaster import app
 from flask_sqlalchemy import get_debug_queries
 from tweestmaster.models import User, Article, Tweest, Review
 
