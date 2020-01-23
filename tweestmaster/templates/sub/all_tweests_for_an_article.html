@@ -28,7 +28,7 @@
             #}
             {% if tup[0].user_id != current_user.id %}
             <div class="col-sm-2">
-                <a href="{{ url_for('forums.new') }}"><button onclick="">review</button></a>
+                <a href="{{ url_for('reviews.new_review', id=data['current_article'] ) }}"><button onclick="">review</button></a>
             </div>
             {% endif %}
         </div>

@@ -28,6 +28,7 @@ from tweestmaster.tweests.routes import tweests
 from tweestmaster.main.routes import main
 from tweestmaster.articles.routes import articles
 from tweestmaster.forums.routes import forums
+from tweestmaster.reviews.routes import reviews
 
 from tweestmaster.users.routes import users
 from tweestmaster.site_utils import sql_debug
@@ -44,3 +45,4 @@ app.register_blueprint(tweests)
 app.register_blueprint(main)
 app.register_blueprint(articles)
 app.register_blueprint(forums)
+app.register_blueprint(reviews)
