@@ -8,7 +8,6 @@ forums = Blueprint('forums', __name__)
 
 
 @forums.route("/forums/", methods=['GET', 'POST'])
-@login_required
 def all_forums():
     forums = Forum.query.all()
     arg_dict = {
