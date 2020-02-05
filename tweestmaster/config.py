@@ -43,7 +43,3 @@ class Config:
     MAIL_PORT = 587
     MAIL_USE_TLS = True
 
-    # SECRET_KEY = '4fb766da1c040c452e02703a752d233f'
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
-    # MAIL_USERNAME = 'admin'
-    # MAIL_PASSWORD = 'email_password'
