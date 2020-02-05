@@ -5,6 +5,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 #from flask_modus import Modus
 #use this later during deployment
+from flask_migrate import Migrate
 from tweestmaster.config import Config
 
 
@@ -14,6 +15,7 @@ state = {'forum': "Master"}
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+migrate = Migrate()
 login_manager = LoginManager()
 login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
@@ -34,6 +36,7 @@ def create_app():
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
     app.config["SQLALCHEMY_ECHO"] = True
     db.init_app(app)
+    migrate.init_app(app, db)
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
