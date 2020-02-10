@@ -109,12 +109,45 @@ And the crows started leaving presents. Once, it was an earring. Another time, i
 t1 = tm.Tweest(title="Not so much doom- please! It has been much worse in the recent past!", content=t1_content,user_id=2,forum_id=1,article_id=1)
 t2 = tm.Tweest(title="This is Just the Beginning of a Cascade!", content=t2_content,user_id=2,forum_id=1,article_id=1)
 t3 = tm.Tweest(title="Odd Friends", content=t3_content, user_id=3, forum_id=1, article_id=2)
-r1 = tm.Review(score=55,content="is this as good as you can do. start with spellchecker and move on to the dictionary...", tweest_id=3, forum_id=2,user_id=3)
 
 db.session.add(t1)
 db.session.add(t2)
 db.session.add(t3)
-db.session.add(r1)
+
+t4_content = """Jim Eggers has an anger problem. Jim once dented a woman’s car with his first. He poured steaming hot coffee on somebody’s head. He’s even threatened to kill people. During the heyday of the Catholic Church sex scandal, Eggers was convinced the local archbishop was covering up pedophilia (he wasn’t) and threatened to murder the man.
+
+Jim suffers from bipolar disorder with psychotic tendencies. Back in the day, you did not want to get on his bad side. However, he’s doing a whole lot better these days, totally thanks to Sadie, an African gray parrot.
+
+In 2005, shortly after the Archbishop Incident, Jim rescued Sadie from a bad environment. Her previous owner was just a kid and didn’t take care of the poor bird. Incredibly stressed, Sadie started tearing her own feathers out, but fortunately, Jim was a big animal lover and nursed the bird back to health. And Sadie returned the favor.
+
+Oftentimes, when Jim felt his mood starting to swing, when his vision blurred and his whole entire body started to quiver, right before he went into rage monster mode, he would pace back and forth in his apartment, muttering things like, “It’s okay, Jim. Calm down, Jim. You’re all right, Jim.” Usually, it helped him get a lid on all that anger. One day, as he started to hulk out, Sadie started squawking, “It’s okay, Jim. Calm down, Jim. You’re all right, Jim.”
+
+Sadie’s words were incredibly soothing, so Jim gave the parrot treats every time she calmed him down. And Sadie developed some sort of sixth sense. According to Jim, she started to sense his mood swings before he even got angry. Somehow, she could tell he was growing irritated, and she’d whisper, “Calm down, Jim.”
+
+Ever since then, Jim has carried Sadie wherever he goes. He even bought a special purple backpack that carries a cage. Whenever he needs to go to the store or ride the bus, he takes Sadie along, bumping against his back, and if something ever ticks him off, she’s right there, ready to squawk, “It’s okay, Jim.”""".replace('\n','')
+
+
+t5_content = """Tom the turkey was a local legend in Chilmark, Massachusetts, a little town on Martha’s Vineyard. His tragic tale begins in 2006, when young orphan Tom was injured by a hawk. Fortunately, he was saved by a loving couple, Jonathan and Linda Haar. Though they never adopted Tom as a pet, they healed his wounds and fed him regularly. Soon, Tom was hanging around their house all the time, and the couple fell in love with this ugly bird.
+
+The rest of the neighbors hated Tom’s guts, probably because he was the scariest turkey in history. He regularly attacked other people, and like Cujo with a comb, he’d trap people in their cars and circle their vehicles, daring his victims to step out. Even worse, sometimes he’d whip up a mad turkey mob and attack unsuspecting people while his gang crowded around.
+
+Terrified neighbors parked close to their front doors so they could make a quick dash to safety. Some carried brooms or bats when they went outside. No one was safe from the terrible Tom, except Jonathan and Linda, who didn’t know how foul their fowl had become.
+
+Things came to a head when a deliverywoman called the cops, complaining that a wild turkey was menacing the streets. When two officers arrived, Tom wasn’t intimidated. Instead, he attacked the cops, forcing one of the officers to jump on his car. The second officer pulled out his pistol and fired twice, wounding the turkey. Tom dashed off, and the police chased after him, guns blazing. Tom was finally dead.
+
+Jonathan ran up, screaming and shouting. He’d loved that bird. In fact, he was so angry that he slugged one of the cops in the face. Jonathan was hauled into jail, and the story became a big-time scandal. People who didn’t live in Tom’s territory wrote to the newspapers, complaining about the cop’s excessive use of force. One paper ran a cartoon of a stupid-looking turkey dressed up as a police officer. For weeks, it’s all anyone talked about.
+
+Not much happens in Chilmark, Massachusetts.
+
+Six months, $30,000 in legal fees, and several dropped charges later, Jonathan was finally released . . . and so was Tom. The police had kept his bullet-ridden body in a freezer as evidence, so Tom was probably coated with frost. Brokenhearted, Jonathan and Linda buried Tom in their yard, complete with a tombstone that read: “Tom the Turkey. He died as he lived.”""".replace("\n", "")
+
+
+t4 = tm.Tweest(title="Angry Bird", content=t4_content, user_id=3, forum_id=1, article_id=2)
+t5 = tm.Tweest(title="Tom the Turkey", content=t5_content, user_id=1, forum_id=1, article_id=2)
+
+db.session.add(t4)
+db.session.add(t5)
+
 db.session.commit()
 
 print('shit')

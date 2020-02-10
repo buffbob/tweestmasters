@@ -71,7 +71,6 @@ class Article(db.Model, UserMixin):
     title = db.Column(db.String(200), nullable=False, unique=True)
     content = db.Column(db.String(10000), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    icon = db.Column(db.String(200), nullable=False, default='default.jpg')
     # foreign keys
     forum_id = db.Column(db.Integer, db.ForeignKey('forum.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
@@ -108,7 +107,7 @@ class Tweest(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False, unique=True)
     content = db.Column(db.String(1000), nullable=False, unique=True)
-    #score = db.Column(db.Integer, nullable=True, default=0)
+    score = db.Column(db.Integer, nullable=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False, default=1)
@@ -125,15 +124,16 @@ class Tweest(db.Model, UserMixin):
 class tweestsource(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    uri = db.Column(db.String(100), nullable=False)
+    url = db.Column(db.String(100), nullable=False)
     # foreign keys
     tweest_id = db.Column(db.Integer, db.ForeignKey('tweest.id'), nullable=False)
 
 
 class Review(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    score = db.Column(db.Integer, nullable=False)
-    content = db.Column(db.String(200),nullable=False)
+    entertainment_score = db.Column(db.Integer, nullable=False),
+    style_score = db.Column(db.Integer, nullable=False),
+    content = db.Column(db.String(200),nullable=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # foreign keys
     tweest_id = db.Column(db.Integer, db.ForeignKey('tweest.id'), nullable=False)
