@@ -11,6 +11,15 @@
 
     <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url_for('static', filename='site_images/favicon.ico') }}" rel="shortcut icon">
+    <script>
+function outputUpdate(score) {
+    document.querySelector('#selected-ent-score').value = score;
+}
+
+function outputStyleUpdate(score) {
+    document.querySelector('#selected-style-score').value = score;
+}
+</script>
     {% if data is defined %}
     <title>TweestMasters- {{ data.get("title") }}</title>
     {% else %}
@@ -65,7 +74,8 @@
     </nav>
 </header>
 
-
+{% block title %}
+{% endblock %}
 <main class="container-fluid">
     <div class="row">
         <div class="col-md-8">
