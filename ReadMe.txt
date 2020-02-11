@@ -1,4 +1,11 @@
-have added 2 users need to add a group and an account page
+Design Project can be found running at Tweestmasters.com
 
-base an account page off ----12 and use /user/buff
-as the account page for a logged in user
+
+missing fuctionality-
+- cant join a forum(so master is all you get for now)
+- submited reviews do nothing
+- scores for tweests are not kept
+
+
+Looking for Front End and design help
+Or any help
