@@ -5,4 +5,4 @@ venv/
 venv/*
 transfer/
 transfer/*
-/tweestmaster/config.py
+tweestmaster/config.py
