@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from tweestmaster.models import User, Tweest, Article, Forum
 from tweestmaster.articles.forms import ArticleForm, UpdateArticleForm
 from tweestmaster.site_utils import format_and_save_article_pictures, send_reset_email
-from tweestmaster import db, state
+from tweestmaster import db
 from tweestmaster.models import User, Tweest, Article, ArticlePicture
 import os
 
@@ -126,7 +126,6 @@ def new_article():
         return redirect(url_for('articles.new_article'))
 
     if form.validate_on_submit():
-        forum = Forum.query.filter_by(name=state.get("forum")).first()
         pics = []
         #prepare list to format
         pics.append(form.pic1)  # this one is required
@@ -141,7 +140,7 @@ def new_article():
         #pic_names[0] should have a file in tiny for its icon
         icon = os.path.join(current_app.root_path, 'static/article_images/tiny', pic_names[0])
         article = Article(title=form.title.data, content=correct_content_value,
-                          user_id=current_user.id, forum_id=forum.id, icon=icon)
+                          user_id=current_user.id, forum_id=session.get('current_forum_id', 1), icon=icon)
         db.session.add(article)
         db.session.commit()
         article_id = Article.query.filter_by(title=form.title).first().id

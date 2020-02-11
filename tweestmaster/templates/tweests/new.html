@@ -64,24 +64,7 @@
 <div>
     {% include "sub/stats_div.html" %}
 </div>
-<div class="border border-rounded">
-  <div class="title-highligh">
-    <div>Current article:</div>
-    <div class="pl-2 headline" style="background-color:#dddddd;">{{ data['article_title']}}</div>
-
-  </div>
-  <div class="row">
-    <img class="img-fluid p-3"
-         src="{{ url_for('static', filename='article_images/' + data['image'].uri) }}">
-  </div>
-
-  <div class="container">
-    <div class="row"><textarea class="article-content p-2" cols="100" rows="10">{{ data['article_content'] }}</textarea>
-    </div>
-  </div>
-</div>
-<div class="p-2"></div>
-
+{% include "sub/current_article.html" %}
 {% endblock %}
 {% block sidebar_main %}
 {% include "sub/sidebar_links.html" %}

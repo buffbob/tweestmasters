@@ -19,8 +19,9 @@ function outputUpdate(score) {
 function outputStyleUpdate(score) {
     document.querySelector('#selected-style-score').value = score;
 }
-</script>
-    {% if data is defined %}
+
+    </script>
+    {% if data.get('title') is defined %}
     <title>TweestMasters- {{ data.get("title") }}</title>
     {% else %}
     <title>TweestMasters</title>
@@ -34,12 +35,7 @@ function outputStyleUpdate(score) {
                 <img alt="Flower" class="rounded"
                      src="{{ url_for('static', filename='raven_tn.jpg')}}" title="White Flower">
             </a>
-            {% if data.get('current_forum_name') is defined %}
-            <a class="navbar-brand mr-1" href="{{ url_for('main.home') }}">TweestMasters- </a>
-            <span class="article-title muted">{{ data.get('current_forum_name') }}</span>
-            {% else %}
             <a class="navbar-brand mr-1" href="{{ url_for('main.home') }}">TweestMasters</a>
-            {% endif %}
             <button aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation"
                     class="navbar-toggler"
                     data-target="#navbarToggle" data-toggle="collapse" type="button">

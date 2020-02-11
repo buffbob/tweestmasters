@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session
 from flask_login import login_required, current_user
-from tweestmaster.models import Forum, Tweest, Article
+from tweestmaster.models import Forum, Tweest, Article, User
 from tweestmaster.reviews.forms import ReviewForm
 
 
@@ -35,10 +35,18 @@ def new_review(id):
     articleofconcern= Article.query.filter_by(id=tweestofconcern.article_id).first()
     forumofconcern = Forum.query.filter_by(id=session['current_forum_id']).first()
 
+    tweest_author_id = tweestofconcern.user_id
+    tweestofconcern_author = User.query.filter_by(id=tweest_author_id).first()
+    author_name = tweestofconcern_author.username
+
     #article content, title
     # tweest title
     # tweest content
+
+    image = articleofconcern.pics[0]
     arg_dict = {
+        "image":image,
+        "author_name":author_name,
         "article_content":articleofconcern.content,
         "article_title":articleofconcern.title,
         "article_images":articleofconcern.pics,

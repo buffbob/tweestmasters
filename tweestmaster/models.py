@@ -18,10 +18,10 @@ memberships = db.Table("memberships",
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(30), nullable=False, unique=True)
+    username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(100), nullable=False, unique=True)
-    password = db.Column(db.String(40), nullable=False)
-    image_file = db.Column(db.String(50), nullable=False, default='default.png')
+    password = db.Column(db.String(100), nullable=False)
+    image_file = db.Column(db.String(100), nullable=False, default='default.png')
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # one to many relationships
     reviews = db.relationship("Review", backref="review_user", lazy=True)
@@ -50,7 +50,7 @@ class User(db.Model, UserMixin):
 class Forum(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50),  nullable=False, unique=True)
-    description = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text, nullable=False)
     picture = db.Column(db.String(100), nullable=False, default='site_images/default_landscape.jpg')
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     is_private = db.Column(db.Boolean, nullable=False, default=False)
@@ -69,7 +69,7 @@ class Forum(db.Model, UserMixin):
 class Article(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False, unique=True)
-    content = db.Column(db.String(10000), nullable=False)
+    content = db.Column(db.Text, nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # foreign keys
     forum_id = db.Column(db.Integer, db.ForeignKey('forum.id'), nullable=False)
@@ -105,8 +105,8 @@ class ArticleSource(db.Model, UserMixin):
 # a response to an articles
 class Tweest(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), nullable=False, unique=True)
-    content = db.Column(db.String(1000), nullable=False, unique=True)
+    title = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text, nullable=False)
     score = db.Column(db.Integer, nullable=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # foreign keys
@@ -131,9 +131,9 @@ class tweestsource(db.Model, UserMixin):
 
 class Review(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    entertainment_score = db.Column(db.Integer, nullable=False),
-    style_score = db.Column(db.Integer, nullable=False),
-    content = db.Column(db.String(200),nullable=True)
+    entertainment_score = db.Column(db.Integer, nullable=False)
+    style_score = db.Column(db.Integer, nullable=False)
+    content = db.Column(db.Text, nullable=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # foreign keys
     tweest_id = db.Column(db.Integer, db.ForeignKey('tweest.id'), nullable=False)

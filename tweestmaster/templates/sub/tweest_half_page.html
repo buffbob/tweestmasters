@@ -1,9 +1,8 @@
 <div>
-    <h5 class="text-center blue-text">Review this Tweest</h5>
-    <hr>
-    <hr>
+
     <div>
-        <h5>{{ data['tweest_title'] }}</h5>
+        <div class="headline"><span class="article-sm-font purple1_text">reviewing: </span>{{ data['tweest_title'] }}</div>
+        <div class="article-sm-font"><span class="purple1_text">created by: </span>{{ data['author_name']}}</div>
             <div class="row">
                 <textarea class="article-content m-2" cols="800" rows="12">{{ data['tweest_content'] }}</textarea>
             </div>

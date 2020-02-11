@@ -1,24 +1,14 @@
 {% extends "layout-basic.html" %}
 {% block title %}
-<div>
-    <div class="row">
-        <div class="col-md-6">
 
-            {% include "sub/view_article_half_page.html" %}
-
-        </div>
-        <div class="col-md-6">
-
-            {% include "sub/tweest_half_page.html" %}
-
-        </div>
-    </div>
-</div>
 {% endblock %}
 <hr>
 <hr>
 {% block main_header %}
-<h5>Your New Review</h5>
+{% include "sub/tweest_half_page.html" %}
+<h5 class="purple1_text text-center mt-3">Your New Review</h5>
+<hr>
+
 <div>
     <form action="" method="POST">
         {{ form.hidden_tag() }}
@@ -66,11 +56,14 @@
                 {% endfor %}
             </div>
             {% else %}
-            {{ form.content(min=0, max=100, class="form-control form-control-lg") }}
+            {{ form.content(rows=6,  class="form-control form-control-lg") }}
             {% endif %}
         </div>
     </form>
 </div>
 {% endblock %}
 {% block main_content %}
+{% endblock %}
+{% block sidebar_main %}
+{% include "sub/current_article.html" %}
 {% endblock %}

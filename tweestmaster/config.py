@@ -22,9 +22,12 @@ if os.path.isfile(file_path):
 else:
     temp_1 = '4fb766da1c040c452e02703a752d233f'
     temp_2 = 'sqlite:///site.db'
+    #temp_2 = 'mysql+pymysql://tweest:pass!PASS@localhost:3306/tweestmaster'
     temp_3 = 'admin'
     temp_4 = 'email_password'
 
+temp_5 = False
+temp_6 = False
 
 
 class Config:
@@ -37,6 +40,8 @@ class Config:
     # MAIL_USERNAME = os.environ.get('EMAIL_USERNAME')
     MAIL_PASSWORD = temp_4
     # MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+    SQLALCHEMY_ECHO = temp_5
+    SQLALCHEMY_TRACK_MODIFICATIONS = temp_6
 
     # other config settings
     MAIL_SERVER = 'smtp.googlemail.com'

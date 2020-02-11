@@ -9,10 +9,6 @@ from flask_migrate import Migrate
 from tweestmaster.config import Config
 
 
-
-
-state = {'forum': "Master"}
-
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 migrate = Migrate()
@@ -34,7 +30,6 @@ def create_app():
     app.config.from_object(Config)
     # app.config['SECRET_KEY'] = '4fb766da1c040c452e02703a752d233f'
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-    app.config["SQLALCHEMY_ECHO"] = True
     db.init_app(app)
     migrate.init_app(app, db)
     bcrypt.init_app(app)
