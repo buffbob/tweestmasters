@@ -107,8 +107,8 @@ Six months, $30,000 in legal fees, and several dropped charges later, Jonathan w
 app= create_app()
 
 with app.app_context():
-    # add tables for sqlite  ## not needed for mysql.
-    db.create_all()
+    # add tables for sqlite  ## not needed for mysql after "flask db upgrade"
+    #db.create_all()
     u1 = tm.User(username="Admin", email='admin@tweestmasters.com', password=pwh)
     # now add 2 more users
     u2 = tm.User(username="BuffBob", email="lastgulch@gmail.com", password="password")

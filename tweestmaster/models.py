@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
-    image_file = db.Column(db.String(100), nullable=False, default='default.png')
+    image_file = db.Column(db.String(100), nullable=False, default='default.jpg')
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # one to many relationships
     reviews = db.relationship("Review", backref="review_user", lazy=True)
