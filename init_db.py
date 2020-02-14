@@ -105,7 +105,9 @@ app= create_app()
 
 with app.app_context():
     # add tables for sqlite  ## not needed for mysql after "flask db upgrade"
-    #db.create_all()
+    db.create_all()
+    db.session.commit()
+
     u1 = tm.User(username="Admin", email='admin@tweestmasters.com', password=pwh)
     # now add 2 more users
     u2 = tm.User(username="BuffBob", email="lastgulch@gmail.com", password="password")
