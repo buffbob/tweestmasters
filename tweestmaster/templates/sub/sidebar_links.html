@@ -1,10 +1,11 @@
 <div class="p-1" style="background-color:#cccccc;">
   <div class='text-muted'>Hmmm...</div>
   <div >
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-light">Most Popular Articles</li>
+  <a class="list-group">
+    <a href="#"><li class="list-group-item list-group-item-light">Most Popular Articles</li></a>
     <li class="list-group-item list-group-item-light">Most Popular tweests</li>
     <li class="list-group-item list-group-item-light">Most followed Forums</li>
+    <a href="{{ url_for('main.links') }}"><li class="list-group-item list-group-item-light">Writing Improvement Links</li></a>
     <li class="list-group-item list-group-item-light">wildcard</li>
   </ul>
 </div>

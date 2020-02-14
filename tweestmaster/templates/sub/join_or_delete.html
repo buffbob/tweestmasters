@@ -1,0 +1,33 @@
+<div class="p-2">
+    <div class="" id="forum_long_descrip"></div>
+    {% if data['in_master'] %}
+    {% else %}
+
+    {% if data['a_member'] %}
+    <div class="mt-2">
+        <a class="" href="{{ url_for('main.home') }}">
+            <button class="btn btn-secondary" onclick="">cancel membership</button>
+        </a>
+    </div>
+    {% else %}
+    <div class="mt-2">
+        {% if current_user.id is defined %}
+
+        <form id="formjoin" action="{{ url_for('forums.show', id=data['id']) }}" method="get">
+            <label class="article-title-sm">current forum</label><br>
+            <input name="just_joined" value="{{ data['title'] }}" readonly>
+            <button class='btn btn-danger' form="formjoin" type='submit' value="submit">Join</button>
+        </form>
+        {% else %}
+        {% endif %}
+    </div>
+    {% endif %}
+    {% endif %}
+
+</div>
+<!--
+the area where we user js to expand the following div
+-->
+<div class="forum_details">
+
+</div>

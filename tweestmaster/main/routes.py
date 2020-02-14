@@ -73,11 +73,16 @@ def home():
     }
     return render_template('main/home.html', data=arg_dic)
 
-@main.route("/how_to_get_started")
+@main.route("/how_to_get_started", methods=['GET','POST'])
 def get_started():
+    title = "Getting Started"
+    if request.method == "Post":
+        title = 'boogers'
     arg_dic = {
-        "title": "Getting Started",
+        "one": request.args.get('first'),
+        "title": title,
     }
+
     return render_template("main/how_to_get_started.html", data = arg_dic)
 
 
@@ -88,3 +93,7 @@ def fred():
         a = request.form['gender']
 
     return render_template('fred.html',name=a)
+
+@main.route("/links")
+def links():
+    return render_template("main/links.html")

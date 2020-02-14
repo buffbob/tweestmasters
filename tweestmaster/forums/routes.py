@@ -57,10 +57,22 @@ def new():
 @forums.route("/forums/<int:id>")
 def show(id):
     forum = Forum.query.get_or_404(id)
+    just_joined = request.args.get('just_joined')
+    # this is only difference when form(forum join button) is submited
+    if just_joined == forum.name:
+        # add user to forum
+        forum.users.append(current_user)
+        db.session.commit()
     session['current_forum_id'] = id
+    forum = Forum.query.get_or_404(id)
     cun = "not logged in"
     if current_user.is_authenticated:
         cun = current_user.username
+        cf_ids = [forum.id for forum in current_user.forums]
+    else:
+        cf_ids=[]
+    a_member = (int(session.get("current_user_id")) in cf_ids)
+    in_master = (forum.id == 1)
 
     art_authors = [User.query.filter_by(id=article.user_id).first().username for article in forum.articles]
 
@@ -83,7 +95,11 @@ def show(id):
         print(e)
 
 
+
     arg_dict = {
+        "title":forum.name,
+        "a_member":a_member,
+        "in_master":in_master,
         "article_title": current_article_title,
         "article_content": current_article_content,
         "article_images": images,
