@@ -1,4 +1,9 @@
-have added 2 users need to add a group and an account page
+Design Project can be found running at Tweestmasters.com
 
-base an account page off ----12 and use /user/buff
-as the account page for a logged in user
+
+missing fuctionality-
+- all forums are public at the moment
+- content length verification
+
+Looking for Front End and design help
+Or any help

@@ -133,7 +133,7 @@ class Review(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     entertainment_score = db.Column(db.Integer, nullable=False)
     style_score = db.Column(db.Integer, nullable=False)
-    content = db.Column(db.Text, nullable=True)
+    content = db.Column(db.Text, nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # foreign keys
     tweest_id = db.Column(db.Integer, db.ForeignKey('tweest.id'), nullable=False)

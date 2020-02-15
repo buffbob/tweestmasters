@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, session
 from flask_login import login_required, current_user
-from tweestmaster.models import Forum, Tweest, Article, User
+from tweestmaster.models import Forum, Tweest, Article, User, Review
 from tweestmaster.reviews.forms import ReviewForm
-
+from tweestmaster import db
 
 reviews = Blueprint("reviews", __name__)
 
@@ -29,9 +29,38 @@ def review(id):
 @login_required
 def new_review(id):
     # id is the tweest id
-    form = ReviewForm()
 
+    form = ReviewForm()
     tweestofconcern = Tweest.query.filter_by(id=id).first()
+    if form.validate_on_submit():
+        e_score = form.entertainment_score.data
+        s_score = form.style_score.data
+        local_avg_score = int(e_score + s_score)/2
+        review = Review(entertainment_score=e_score, style_score=s_score,
+                        content=form.content.data, tweest_id=id,
+                        user_id=current_user.id,
+                        forum_id=tweestofconcern.forum_id)
+
+        # update score for tweest of concern
+        initial_score = tweestofconcern.score# score
+        total_raw_score = 0
+        if initial_score != 0: ###### safer:::: >>  could also say if length of tweestofconcern.reviews == 0
+            revs = tweestofconcern.reviews
+            num_reviews = len(revs)
+            for rev in revs: # length or num reviews:
+                total_raw_score += rev.score
+
+            new_score = (total_raw_score + local_avg_score)/(num_reviews+1)
+        else:
+            new_score = local_avg_score
+
+        tweestofconcern.score = new_score
+        db.session.add(review)
+        db.session.commit()
+
+
+
+
     articleofconcern= Article.query.filter_by(id=tweestofconcern.article_id).first()
     forumofconcern = Forum.query.filter_by(id=session['current_forum_id']).first()
 
@@ -39,12 +68,11 @@ def new_review(id):
     tweestofconcern_author = User.query.filter_by(id=tweest_author_id).first()
     author_name = tweestofconcern_author.username
 
-    #article content, title
-    # tweest title
-    # tweest content
+
 
     image = articleofconcern.pics[0]
     arg_dict = {
+        "title":"Review",
         "image":image,
         "author_name":author_name,
         "article_content":articleofconcern.content,

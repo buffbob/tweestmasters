@@ -29,7 +29,7 @@ def register():
 
         flash('Your account has been created! You are now able to log in', 'success')
         # return redirect(url_for('users.login'))
-        return redirect(url_for('main.home'))
+        return redirect(url_for('users.login'))
     arg_dict = {
         "title":"Register",
         "legend":"Register"
@@ -78,6 +78,8 @@ def user(id):
     # add the article picture for each tweest
     tweests_and_pics = [(tweest, Article.query.filter(Article.id==tweest.article_id).first().pics[0].uri) for tweest in tweests]
     reviews = person_of_interest.reviews
+    # for every review we also need the title of the associated tweet
+    rev_tw_tit = [Tweest.query.filter_by(id=rev.user_id).first().title for rev in reviews] # list of titles to zip ? with reviews
     forums = person_of_interest.forums
 
     # current forum name
@@ -127,9 +129,11 @@ def user(id):
     else:
         cun = "no current user"
 
-
+    rev_tt_tup = zip(reviews, rev_tw_tit)
     arg_dict = {
         #"title":current_user.username,
+        'rev_tt_tup':rev_tt_tup,
+        "tweest_titles_per_rev": rev_tw_tit,
         "image_file":image_file,
         "current_user_name":cun,
         'sidebar_data': sidebar_items,

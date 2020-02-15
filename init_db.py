@@ -46,18 +46,15 @@ While celluloid would prove a wonderful substitute for ivory, Hyatt apparently n
 
 t1_content = """Gold is the heaviest substance that you will find in a creek or river, and because of this it is somewhat predictable in the way that it deposits itself in a waterway. It will form in what is known as “paystreaks,” or lines of gold.
 
-These paystreaks will settle down through the sand and gravel and sit directly on bedrock. They will be richest down in the cracks and crevices of the bedrock.
+These paystreaks will settle down through the sand and gravel and sit directly on bedrock. They will be richest down in the cracks and crevices of the bedrock. 
 
-High water during the spring will add more gold to these paystreaks. They are constantly refreshed by gold that erodes from the hills and feed into the river.
+High water during the spring will add more gold to these paystreaks. They are constantly refreshed by gold that erodes from the hills and feed into the river. 
 
-Inside bends of a river where water slows is the best known place to find gold deposits in paystreaks, but they also form in concentrations behind boulders, logjams, under waterfalls, or anywhere that the velocity of water slows.
-
-In recent years, suction dredges were the best way to efficiently mine the gold paystreaks in a river due to their ability to process lots of gravel from the riverbed. Dredges are still the best tool for the job, but permitting and regulations have gotten difficult in recent years. Many prospectors are now limited to using sluices and highbankers in many states.
-
- 
+Inside bends of a river where water slows is the best known place to find gold deposits in paystreaks, but they also form in concentrations behind boulders, logjams, under waterfalls, or anywhere that the velocity of water slows. 
+In recent years, suction dredges were the best way to efficiently mine the gold paystreaks in a river due to their ability to process lots of gravel from the riverbed. Dredges are still the best tool for the job, but permitting and regulations have gotten difficult in recent years. Many prospectors are now limited to using sluices and highbankers in many states. 
 """.replace('\n', '')
 
-t2_content="""I have the fondest memory of my childhood dog. Cleo was a young energetic white german shepard and she had no one to play with while I was at school. 
+t2_content="""I have the fondest memory of my childhood dog. Cleo was a young energetic white german shepard and she had no one to play with while I was at school.  
 She was very familiar with my school. A common activity was to take her to the playground after school. Sometimes she would chase me and my friends as 
 we rode the 1/2 mile to school on our bikes. Other times she would pull me on my skateboard. She learned to use most of playground equipment. Most amazing 
 to me was her ability to climb the monkey bars. Playground equipment- there is a story for another day. 
@@ -66,38 +63,38 @@ freedom it was off to school where she often would sit by my bike. Other times s
 her home. But it seems that after missing too much time the school just let her be.
 """.replace('\n','')
 
-t3_content = """Admit it. You’ve always wanted the ability to magically befriend wild animals, like the Beastmaster or some Disney princess. But while most of us can only dream of communicating with other creatures, Gabi Mann is pretty tight with the animal kingdom. This eight-year-old from Seattle is best friends with a flock of crows. In fact, they even give her gifts.
+t3_content = """Admit it. You’ve always wanted the ability to magically befriend wild animals, like the Beastmaster or some Disney princess. But while most of us can only dream of communicating with other creatures, Gabi Mann is pretty tight with the animal kingdom. This eight-year-old from Seattle is best friends with a flock of crows. In fact, they even give her gifts. 
 
-This incredibly odd friendship began when she was just four and would constantly spill her food. The neighborhood birds took note, and they were soon watching Gabi every time she stepped outside, just in case she dropped some sort of tasty treat. As Gabi grew older, she intentionally started sharing her lunch with the crows, and it was soon an everyday thing. With her mother’s help, Gabi kept a bird feeder full of peanuts and regularly tossed dog food onto the lawn.
+This incredibly odd friendship began when she was just four and would constantly spill her food. The neighborhood birds took note, and they were soon watching Gabi every time she stepped outside, just in case she dropped some sort of tasty treat. As Gabi grew older, she intentionally started sharing her lunch with the crows, and it was soon an everyday thing. With her mother’s help, Gabi kept a bird feeder full of peanuts and regularly tossed dog food onto the lawn. 
 
 And the crows started leaving presents. Once, it was an earring. Another time, it was a broken lightbulb. They left a button, a paper clip, a rock, and a Lego piece. Each time, the birds would gobble up the food and then leave a token of their appreciation. Soon, Gabi was collecting their little gifts, bagging each item and marking every present with the date, description, and the location where she found it. And even though she really loves the rusty screw and the black zipper, her favorite gift is a little plastic heart. As she told the BBC, “It’s showing me how much they love me.”""".replace('\n','')
 
 
 
-t4_content = """Jim Eggers has an anger problem. Jim once dented a woman’s car with his first. He poured steaming hot coffee on somebody’s head. He’s even threatened to kill people. During the heyday of the Catholic Church sex scandal, Eggers was convinced the local archbishop was covering up pedophilia (he wasn’t) and threatened to murder the man.
+t4_content = """Jim Eggers has an anger problem. Jim once dented a woman’s car with his first. He poured steaming hot coffee on somebody’s head. He’s even threatened to kill people. During the heyday of the Catholic Church sex scandal, Eggers was convinced the local archbishop was covering up pedophilia (he wasn’t) and threatened to murder the man. 
 
-Jim suffers from bipolar disorder with psychotic tendencies. Back in the day, you did not want to get on his bad side. However, he’s doing a whole lot better these days, totally thanks to Sadie, an African gray parrot.
+Jim suffers from bipolar disorder with psychotic tendencies. Back in the day, you did not want to get on his bad side. However, he’s doing a whole lot better these days, totally thanks to Sadie, an African gray parrot. 
 
-In 2005, shortly after the Archbishop Incident, Jim rescued Sadie from a bad environment. Her previous owner was just a kid and didn’t take care of the poor bird. Incredibly stressed, Sadie started tearing her own feathers out, but fortunately, Jim was a big animal lover and nursed the bird back to health. And Sadie returned the favor.
+In 2005, shortly after the Archbishop Incident, Jim rescued Sadie from a bad environment. Her previous owner was just a kid and didn’t take care of the poor bird. Incredibly stressed, Sadie started tearing her own feathers out, but fortunately, Jim was a big animal lover and nursed the bird back to health. And Sadie returned the favor. 
 
-Oftentimes, when Jim felt his mood starting to swing, when his vision blurred and his whole entire body started to quiver, right before he went into rage monster mode, he would pace back and forth in his apartment, muttering things like, “It’s okay, Jim. Calm down, Jim. You’re all right, Jim.” Usually, it helped him get a lid on all that anger. One day, as he started to hulk out, Sadie started squawking, “It’s okay, Jim. Calm down, Jim. You’re all right, Jim.”
+Oftentimes, when Jim felt his mood starting to swing, when his vision blurred and his whole entire body started to quiver, right before he went into rage monster mode, he would pace back and forth in his apartment, muttering things like, “It’s okay, Jim. Calm down, Jim. You’re all right, Jim.” Usually, it helped him get a lid on all that anger. One day, as he started to hulk out, Sadie started squawking, “It’s okay, Jim. Calm down, Jim. You’re all right, Jim.” 
 
-Sadie’s words were incredibly soothing, so Jim gave the parrot treats every time she calmed him down. And Sadie developed some sort of sixth sense. According to Jim, she started to sense his mood swings before he even got angry. Somehow, she could tell he was growing irritated, and she’d whisper, “Calm down, Jim.”
+Sadie’s words were incredibly soothing, so Jim gave the parrot treats every time she calmed him down. And Sadie developed some sort of sixth sense. According to Jim, she started to sense his mood swings before he even got angry. Somehow, she could tell he was growing irritated, and she’d whisper, “Calm down, Jim.” 
 
 Ever since then, Jim has carried Sadie wherever he goes. He even bought a special purple backpack that carries a cage. Whenever he needs to go to the store or ride the bus, he takes Sadie along, bumping against his back, and if something ever ticks him off, she’s right there, ready to squawk, “It’s okay, Jim.”""".replace('\n','')
 
 
-t5_content = """Tom the turkey was a local legend in Chilmark, Massachusetts, a little town on Martha’s Vineyard. His tragic tale begins in 2006, when young orphan Tom was injured by a hawk. Fortunately, he was saved by a loving couple, Jonathan and Linda Haar. Though they never adopted Tom as a pet, they healed his wounds and fed him regularly. Soon, Tom was hanging around their house all the time, and the couple fell in love with this ugly bird.
+t5_content = """Tom the turkey was a local legend in Chilmark, Massachusetts, a little town on Martha’s Vineyard. His tragic tale begins in 2006, when young orphan Tom was injured by a hawk. Fortunately, he was saved by a loving couple, Jonathan and Linda Haar. Though they never adopted Tom as a pet, they healed his wounds and fed him regularly. Soon, Tom was hanging around their house all the time, and the couple fell in love with this ugly bird. 
 
-The rest of the neighbors hated Tom’s guts, probably because he was the scariest turkey in history. He regularly attacked other people, and like Cujo with a comb, he’d trap people in their cars and circle their vehicles, daring his victims to step out. Even worse, sometimes he’d whip up a mad turkey mob and attack unsuspecting people while his gang crowded around.
+The rest of the neighbors hated Tom’s guts, probably because he was the scariest turkey in history. He regularly attacked other people, and like Cujo with a comb, he’d trap people in their cars and circle their vehicles, daring his victims to step out. Even worse, sometimes he’d whip up a mad turkey mob and attack unsuspecting people while his gang crowded around. 
 
-Terrified neighbors parked close to their front doors so they could make a quick dash to safety. Some carried brooms or bats when they went outside. No one was safe from the terrible Tom, except Jonathan and Linda, who didn’t know how foul their fowl had become.
+Terrified neighbors parked close to their front doors so they could make a quick dash to safety. Some carried brooms or bats when they went outside. No one was safe from the terrible Tom, except Jonathan and Linda, who didn’t know how foul their fowl had become. 
 
-Things came to a head when a deliverywoman called the cops, complaining that a wild turkey was menacing the streets. When two officers arrived, Tom wasn’t intimidated. Instead, he attacked the cops, forcing one of the officers to jump on his car. The second officer pulled out his pistol and fired twice, wounding the turkey. Tom dashed off, and the police chased after him, guns blazing. Tom was finally dead.
+Things came to a head when a deliverywoman called the cops, complaining that a wild turkey was menacing the streets. When two officers arrived, Tom wasn’t intimidated. Instead, he attacked the cops, forcing one of the officers to jump on his car. The second officer pulled out his pistol and fired twice, wounding the turkey. Tom dashed off, and the police chased after him, guns blazing. Tom was finally dead. 
 
-Jonathan ran up, screaming and shouting. He’d loved that bird. In fact, he was so angry that he slugged one of the cops in the face. Jonathan was hauled into jail, and the story became a big-time scandal. People who didn’t live in Tom’s territory wrote to the newspapers, complaining about the cop’s excessive use of force. One paper ran a cartoon of a stupid-looking turkey dressed up as a police officer. For weeks, it’s all anyone talked about.
+Jonathan ran up, screaming and shouting. He’d loved that bird. In fact, he was so angry that he slugged one of the cops in the face. Jonathan was hauled into jail, and the story became a big-time scandal. People who didn’t live in Tom’s territory wrote to the newspapers, complaining about the cop’s excessive use of force. One paper ran a cartoon of a stupid-looking turkey dressed up as a police officer. For weeks, it’s all anyone talked about. 
 
-Not much happens in Chilmark, Massachusetts.
+Not much happens in Chilmark, Massachusetts. 
 
 Six months, $30,000 in legal fees, and several dropped charges later, Jonathan was finally released . . . and so was Tom. The police had kept his bullet-ridden body in a freezer as evidence, so Tom was probably coated with frost. Brokenhearted, Jonathan and Linda buried Tom in their yard, complete with a tombstone that read: “Tom the Turkey. He died as he lived.”""".replace("\n", "")
 
@@ -108,7 +105,9 @@ app= create_app()
 
 with app.app_context():
     # add tables for sqlite  ## not needed for mysql after "flask db upgrade"
-    #db.create_all()
+    db.create_all()
+    db.session.commit()
+
     u1 = tm.User(username="Admin", email='admin@tweestmasters.com', password=pwh)
     # now add 2 more users
     u2 = tm.User(username="BuffBob", email="lastgulch@gmail.com", password="password")
@@ -117,10 +116,10 @@ with app.app_context():
     db.session.add(u2)
     db.session.add(u3)
     db.session.commit()
-    site_forum = tm.Forum(name='Master', description="tweestmasters home forum. Striving to be our best.", leader_id=1)
+    site_forum = tm.Forum(name='Master', description="Tweestmasters' home forum.", leader_id=1)
 
     # a second forum and add the Admin as a user
-    nobody = tm.Forum(name='Mother Nature bats last', description="A site devoted to environmentalists", leader_id=2)
+    nobody = tm.Forum(name='Mother Nature bats last', description="A site devoted the environment", leader_id=2)
     db.session.add(site_forum)
     db.session.add(nobody)
     db.session.commit()
@@ -151,7 +150,7 @@ with app.app_context():
     ap9 = tm.ArticlePicture(uri="index9.jpg", article_id=3)
 
     a1 = tm.Article(title='Glory Days', content=article_content1, forum_id=1, user_id=1)
-    a2 = tm.Article(title="Nature's great indulgencies", content=article_content2, forum_id=1, user_id=1)
+    a2 = tm.Article(title="Nature's great indulgences", content=article_content2, forum_id=1, user_id=1)
     a3 = tm.Article(title="Man's Greatest Invention?", content=article_content3, forum_id=2,
                     user_id=2)
 

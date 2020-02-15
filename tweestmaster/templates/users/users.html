@@ -49,8 +49,8 @@
         <div class="row">
             <div class="col-sm-1">
                 <a class="float-left" href="{{ url_for('tweests.tweest', id=tweest[0].id) }}">
-                <img class="user-mc-article-image rounded"
-                     src="{{ url_for('static', filename='article_images/' + tweest[1]) }}"></a>
+                    <img class="user-mc-article-image rounded"
+                         src="{{ url_for('static', filename='article_images/' + tweest[1]) }}"></a>
             </div>
             <div class="col-sm-9">
                 <strong class="article-title-md ml-3">
@@ -79,39 +79,19 @@
 {% if data['lengths'][2] > 0 %}
 <hr>
 <h5>Reviews</h5>
-{% for review in data['reviews'] %}
+{% for reviewtt in data['rev_tt_tup'] %}
 <article class="media content-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-                <img class="mc-home-user_image"
-                     src="{{ url_for('static', filename='article_images/index1.jpg') }}">boogers
-            </div>
-            <div class="col-sm-10">
-
-                <strong class="article-title-md">
-                    <a class="mt-2 float-left" href="{{ url_for('tweests.tweest', id=1) }}" style="color:#333333;">{{
-                        review.title }}
-                    </a>
-                </strong>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <a class="article-sm-font float-left" href="{{ url_for('users.user', id=1) }}"> username </a>
-            </div>
-
+        <div class="headline">
+            {{ reviewtt[1] }}
         </div>
         <div>
-            <p class="article-content mb-0">{{ review.content }}</p>
+            <p class="article-content mb-0">{{ reviewtt[0].content }}</p>
         </div>
         <div>
             <small class="text-muted float-right" style="font-size:10px;">
-                <span>posted on <span>{{ review.date_created.strftime('%Y-%m-%d') }}</span></span>
+                <span>posted on <span>{{ reviewtt[0].date_created.strftime('%Y-%m-%d') }}</span></span>
             </small>
         </div>
-    </div>
 </article>
 {% endfor %}
 {% endif %}
