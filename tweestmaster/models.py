@@ -13,8 +13,7 @@ def load_user(user_id):
 memberships = db.Table("memberships",
                        db.Column('forum_id', db.Integer, db.ForeignKey('forum.id'), primary_key=True),
                        db.Column("user_id", db.Integer, db.ForeignKey('user.id'), primary_key=True))
-#Todo: add following capability(many to many) see
-# https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
