@@ -108,7 +108,7 @@ class Tweest(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    score = db.Column(db.Integer, nullable=False, default=0)
+    score = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False, default=1)
