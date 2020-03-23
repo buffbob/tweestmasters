@@ -18,14 +18,7 @@ login_manager.login_message_category = 'info'
 mail = Mail()
 
 
-# modus = Modus(app)
-
-
-
 def create_app():
-
-
-
     app = Flask(__name__)
     app.config.from_object(Config)
     # app.config['SECRET_KEY'] = '4fb766da1c040c452e02703a752d233f'
