@@ -63,6 +63,8 @@
     </div>
 </div>
 {% endif %}
+{% include "sub/all_tweests_for_an_article.html" %}
+
 
 <h4 class="pt-4">Forum Articles</h4>
 <div class="pb-4" style="">
@@ -87,14 +89,9 @@
 
 {% endblock %}
 {% block sidebar_header %}
+{% include "sub/stats_div.html" %}
 
-{% if current_user is defined %}
-    {% include "sub/join_or_delete.html" %}
-{% else %}
-    <h1>hoogers</h1>
-{% endif %}
 <hr class="mt-2 mb-2">
-
 <div class="text-center article-md-font">This forum has {{ data['forum'].users|count }} members</div>
 <div class="text-center article-md-font">{{ data['forum'].articles|count }} articles</div>
 <div class="text-center article-md-font">{{ data['forum'].tweests|count }} associated tweests</div>
@@ -102,16 +99,11 @@
 
 {% endblock %}
 {% block sidebar_main %}
+
+{% include "sub/sidebar_links.html" %}
+
 {% for each in data['forum'].users %}
 <span><a href="{{ url_for('users.user', id=each.id) }}">{{ each.username }} </a></span>
 {% endfor %}
-<div class="mt-1 mb-2 text-center">
-    <a href="{{ url_for('main.home') }}">
-        <button class="btn btn-secondary " onclick="#">view forum details</button>
-    </a>
-</div>
 
-
-
-{% include "sub/sidebar_links.html" %}
 {% endblock %}

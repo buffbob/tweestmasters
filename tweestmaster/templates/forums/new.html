@@ -19,6 +19,32 @@
         {{ form.name(class="form-control form-control-lg") }}
         {% endif %}
       </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+        {{ form.theme.label(class="form-control-label") }}
+        {% if form.theme.errors %}
+        {{ form.theme(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.theme.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.theme(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+
+
+
+
       <div class="form-group">
         {{ form.description.label(class="form-control-label") }}
         {% if form.description.errors %}

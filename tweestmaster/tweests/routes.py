@@ -67,16 +67,35 @@ def new_tweest(article_id):
 
 
 
-
+def find_review_score(review):
+    # review = row of review table
+    return int((review.entertainment_score + review.style_score)/2)
 
 @tweests.route("/tweest/<int:id>")
 def tweest(id):
+    """see helper method above"""
     #page = request.args.get('page', 1, type=int)# from query string
     tweest = Tweest.query.get_or_404(id) #
     tweests = Tweest.query.all()
     article_id=tweest.article_id
     #get reviews, feature article
     reviews =tweest.reviews
+    reviews_authors_ids = None
+    reviews_authors = None
+    reviewed = False
+    # todo: finish thought
+    reviews_scores = [find_review_score(rev) for rev in reviews]
+    print(f"length: {len(reviews)}")
+    if reviews:
+        reviews_authors_ids = [rev.user_id for rev in reviews]
+        reviews_authors = [User.query.filter_by(id=auth_id).first().username for auth_id in reviews_authors_ids]
+        if current_user.id in reviews_authors_ids:
+            reviewed = True
+        zipped = zip(reviews, reviews_authors, reviews_scores)
+    else:
+        zipped = None
+
+    print(f"zipped = none is {zipped is None}")
     author_id = tweest.user_id
     author = User.query.filter_by(id=author_id).first()
     user_img = author.image_file
@@ -87,12 +106,14 @@ def tweest(id):
         "legend":"Booger",
         "tweest_id":id,
         'content': tweest.content,
-        'reviews': reviews,
         "author_image":user_img,
         "post_date":post_date,
-        "article_id":article_id
-
+        "article_id":article_id,
+        "reviews_authors_scores":zipped,
+        "not_reviewed": not reviewed,
     }
+    print(f"length zipped: ")
+
     return render_template('tweests/tweest.html', id=id,  data=dict_args)
 
 

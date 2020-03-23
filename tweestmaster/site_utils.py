@@ -86,6 +86,33 @@ def format_and_save_user_pic(filefield):
     return picture_fn
 
 
+def format_and_save_forum_pic(filefield):
+    """
+    hexs the filenames for uniqueness.
+    formats picture submitted to form and saves to appropriate folders
+    once scaled.
+    :param filefield: (FileField from form) the object returned from form filefield
+    :return: the root file path of the image(a string). ex. booger.jpg
+    """
+    ## note forum pics are stored with user pics.
+    sizes = [(200,150), (50,50)]
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(filefield.data.filename)
+    picture_fn = random_hex + f_ext
+    forum_picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_fn)
+    super_tiny_picture_path = os.path.join(current_app.root_path, 'static/profile_pics/super_tiny', picture_fn)
+
+    image = Image.open(filefield.data)
+    # avatar size
+    resized_image = image.resize(sizes[0], Image.ANTIALIAS)
+    resized_image.save(forum_picture_path)
+    # tiny size
+    resized_image = image.resize(sizes[1], Image.ANTIALIAS)
+    resized_image.save(super_tiny_picture_path)
+    return picture_fn
+
+
+
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message('Password Reset Request',

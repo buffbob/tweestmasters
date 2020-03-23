@@ -1,50 +1,65 @@
 {% extends "layout-basic.html" %}
 {% block main_content %}
 <div class="card">
-  <div>
-    <img class="rounded-circle article-img m-2"
-         src="{{ url_for('static', filename='profile_pics/'+ data['author_image'])}}">
-    <strong class="mt-2">{{ data['tweest_title'] }}</strong>
-    <span class="getclass float-right m-1 pr-1">posted on: <span class="blue_text">{{ data['post_date'] }}</span></span>
-    <hr class="float-center">
-  </div>
-  <div>
-    {{ data['content'] }}
-  </div>
-</div>
-{% endblock %}
+    <div class="row">
+        <div class="col-sm-9">
+            <img class="rounded-circle article-img m-2"
+                 src="{{ url_for('static', filename='profile_pics/'+ data['author_image'])}}">
+            <strong class="mt-2">{{ data['tweest_title'] }}</strong></div>
 
-{% block sidebar %}
-<div class="container">
-  <div class="tweest-sidebar">
-  <div>
-    <a  href="{{ url_for('articles.article',id=data['article_id']) }}">link to tweest article</a>
-    <hr class="mt-3">
-  </div>
-    <hr>
-    <div class="m-2">
-      <h5>your reviews</h5>
+        <div class="col-sm-3 text-center">
+            <div class="getclass float-right m-1 pr-1">
+                posted on: <span class="blue_text">{{ data['post_date'] }}</span>
+            </div>
+            <hr class="float-center">
+            {% if data["not_reviewed"] %}
+            <a href="{{ url_for('reviews.new_review', id=data['tweest_id']) }}">
+                <button class="btn btn-sm btn-secondary">create review</button>
+            </a>
+            {% endif %}
+        </div>
     </div>
-    {# check for  listing the reviews ___________________ #}
-  {% if data['reviews'][0] %}
-  <div>
-    {% for review in data['reviews'] %}
-    <div>
-      here is a review
+    <div class="p-2">
+        {{ data['content'] }}
+    </div>
+</div>
+<div>
+{% if data['reviews_authors_scores'] %}
+    <h5>Reviews</h5>
+    {% for rev_aut in data['reviews_authors_scores'] %}
+
+    <div class="p-1" style="background-color:#dddddd">
+        <div class="row">
+            <div class="col-sm-6" style="font-size:10px;">by <span style="font-size:16px;">{{ rev_aut[1] }}</span>
+            </div>
+            <div class="col-sm-6">
+                <small class="text-muted float-right" style="font-size:10px;">posted on <span>{{ rev_aut[0].date_created.strftime('%Y-%m-%d') }}</span></span>
+                </small>
+            </div>
+        </div>
+        <div class="p-2">
+            <div class="article-content mb-0">{{ rev_aut[0].content }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 text-right">
+                score: {{ rev_aut[2] }}
+            </div>
+            <div class="col-sm-2">
+                {% if current_user.id == rev_aut[0].user_id %}
+                <a href="#" class="float-right">
+                    <button class="btn btn-sm btn-secondary">edit</button>
+                </a>
+                {% endif %}
+            </div>
+        </div>
     </div>
     <hr>
     {% endfor %}
-  </div>
-  {% else %}
-  <div>
-    <p>no reviews yet</p>
-  </div>
+    {% else %}
+    <h3>No reviews yet</h3>
     {% endif %}
-  </div>
 </div>
-
-
-
-
-
+{% endblock %}
+{% block sidebar_header %}
+<h3>here goes tweest/reviews stats</h3>
 {% endblock %}

@@ -13,7 +13,8 @@ def load_user(user_id):
 memberships = db.Table("memberships",
                        db.Column('forum_id', db.Integer, db.ForeignKey('forum.id'), primary_key=True),
                        db.Column("user_id", db.Integer, db.ForeignKey('user.id'), primary_key=True))
-
+#Todo: add following capability(many to many) see
+# https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -49,6 +50,7 @@ class User(db.Model, UserMixin):
 class Forum(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50),  nullable=False, unique=True)
+    theme = db.Column(db.String(50), nullable=True)
     description = db.Column(db.Text, nullable=False)
     picture = db.Column(db.String(100), nullable=False, default='site_images/default_landscape.jpg')
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -106,7 +108,7 @@ class Tweest(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    score = db.Column(db.Integer, nullable=True)
+    score = db.Column(db.Integer, nullable=False, default=0)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False, default=1)

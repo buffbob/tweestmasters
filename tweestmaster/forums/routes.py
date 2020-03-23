@@ -3,6 +3,7 @@ from tweestmaster import db
 from tweestmaster.forums.forms import ForumForm
 from tweestmaster.models import Forum, User, Article
 from flask_login import current_user, login_required
+from tweestmaster.site_utils import format_and_save_user_pic
 
 forums = Blueprint('forums', __name__)
 
@@ -21,8 +22,6 @@ def all_forums():
 @forums.route("/forums/new", methods=['GET', 'POST'])
 @login_required
 def new():
-    # todo: neeed to denote forum and article? like in other pages
-    # todo: nedd data['article-images']
     current_article = Article.query.filter_by(id=session.get("current_article_id")).order_by(Article.id.desc()).first()
     images = current_article.pics
 
@@ -30,9 +29,15 @@ def new():
     # need to get articles and forum data
     # get from current articles
     if form.validate_on_submit():
-        forum = Forum(name=form.name.data, description=form.description.data,
-                      is_private=form.is_private.data,
-                      leader_id=session['current_user_id'])
+        if form.picture.data:
+            picture_fn = format_and_save_user_pic(form.picture)
+            forum = Forum(name=form.name.data, description=form.description.data, picture=picture_fn,
+                          is_private=form.is_private.data,
+                          leader_id=session['current_user_id'])
+        else:
+            forum = Forum(name=form.name.data, description=form.description.data,
+                          is_private=form.is_private.data,
+                          leader_id=session['current_user_id'])
         # could we use a ref to current_user.id
         # help!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         # shall we create a membership-- yes
@@ -112,7 +117,7 @@ def show(id):
         "current_forum_name": forum.name,
         "articles": forum.articles,
         "z_art_authors": zip(forum.articles, art_authors),
-        "tweests_tweest_authors": zip(current_article_tweests, tweest_authors)
+        "tweests_users": zip(current_article_tweests, tweest_authors)
     }
     return render_template('forums/show.html', data=arg_dict)
 
@@ -133,7 +138,7 @@ def edit(id):
         return redirect(url_for('forums.forum', tweest_id=forum.id))
     elif request.method == 'GET':
         form.name.data = forum.name
-        form.content.data = forum.content
+        form.description.data = forum.description
     return render_template('forums/edit.html', title='Update Forum',
                            form=form, legend='Updating forum!')
 

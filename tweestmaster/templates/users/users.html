@@ -105,19 +105,23 @@
 {% block sidebar_main %}
 <div class="mt-4 mb-4">
 </div>
-<div class="p-2">
+<div class="pt-2">
     {% if current_user.id == data['poi_id']%}
-    <a class="" href="{{ url_for('forums.new') }}">
+    <div><a class="" href="{{ url_for('forums.new') }}">
         <button class="btn btn-secondary" onclick="">create forum</button>
     </a>
-    <a href="{{ url_for('articles.new_article') }}">
-        <button class="btn btn-secondary create_acct_btns" onclick="">create article</button>
-    </a>
-    <a href="{{ url_for('users.edit_account', id=current_user.id) }}">
-        <button class="btn btn-secondary" onclick="">edit profile</button>
-    </a>
-
+        <a href="{{ url_for('articles.new_article') }}">
+            <button class="btn btn-secondary create_acct_btns" onclick="">create article</button>
+        </a>
+        <a href="{{ url_for('users.edit_account', id=current_user.id) }}">
+            <button class="btn btn-secondary" onclick="">edit profile</button>
+        </a>
+    </div>
     {% endif %}
 </div>
+<div>
+{% include "sub/myforums.html" %}
+    <div class="mb-3"></div>
 {% include "sub/sidebar_links.html" %}
+</div>
 {% endblock %}s

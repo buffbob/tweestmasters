@@ -1,0 +1,30 @@
+
+<div style="background-color:#eeeeee" class="mt-4 p-1"><h3 class="text-center">{{ data["poi_username"] }}'s Forums</h3>
+    {% for forum in data['forums'] %}
+    <div class="row">
+    {% if current_user.id == data['poi_id']%}
+        <div class="col-sm-9">
+            <a style="color:#666666" href="{{ url_for('forums.show', id=forum.id) }}">{{forum.name }}</a>
+        </div>
+        {% if forum.leader_id == current_user.id %}
+        <div class="col-sm-3 p-1"><a href="{{ url_for('forums.edit', id=forum.id) }}">
+            <button class="btn btn-sm btn-secondary" onclick="">edit</button>
+        </a></div>
+        {% else %}
+        <div class="col-sm-3 p-1"><a href="{{ url_for('forums.delete_forum', id=forum.id) }}">
+            <button class="btn btn-sm btn-secondary" onclick="">unjoin</button>
+        </a></div>
+
+        {% endif %}
+    {% else %}
+        <div class="col-sm-9">{{ forum.name }}
+        </div>
+        <div class="col-sm-3 p-1"><a href="{{ url_for('forums.show', id=forum.id) }}">
+            <button class="btn btn-sm btn-secondary" onclick="">visit</button>
+        </a></div>
+    {% endif %}
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+

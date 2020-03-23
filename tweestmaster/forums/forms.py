@@ -8,7 +8,8 @@ from tweestmaster.models import Forum
 class ForumForm(FlaskForm):
     name = StringField('name your forum', validators=[DataRequired()])
     description = TextAreaField("give a short description of your forum", validators=[DataRequired()])
-    picture = FileField("select a forum photo", validators=[FileAllowed(['jpg', 'png'])])
+    theme = StringField("Theme?")
+    picture = FileField("select a forum photo", validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     is_private = BooleanField("make forum private", default=False)
     submit = SubmitField('Post')
 

@@ -67,8 +67,6 @@ def login():
 
 @users.route("/user/<int:id>", methods=['GET', 'POST'])
 def user(id):
-    huh = request.args
-    sidebar_items=[]
     #articles,tweests,reviews are (each, user_of_interest) tuples
     person_of_interest = User.query.filter(User.id==id).first()
     image_file = url_for("static", filename="profile_pics/" + person_of_interest.image_file)
@@ -102,24 +100,6 @@ def user(id):
     lenf = len(forums)
     lengths=(lena,lent,lenr,lenf)
 
-    if request.method == "GET":   
-        # sidebar_items is all_articles of all_forums
-        all_articles = Article.query.order_by(Article.date_created.desc()).all()
-        sidebar_items = all_articles
-        #.order_by(Tweest.date_posted.desc())\
-        #.paginate(page=page, per_page=5)
-        # TODO: paginate, everything i need
-
-    elif request.method =='POST':
-        filter=request.form['radio']
-        if filter == 'articles':
-            all_articles = Article.query.order_by(Article.date_created.desc()).all()
-            sidebar_items = all_articles
-        elif filter == 'forums':
-            all_forums = Forum.query.order_by(Forum.date_created.desc()).all()
-            sidebar_items = all_forums
-    # sidebar_items is variable to put in sidebar
-    #image = tiny_image(image_file)
     path = os.path.join(current_app.root_path, "static/raven_tn.jpg")
 
     have_a_user = User.query.filter_by(id=session["current_user_id"]).first() is not None
@@ -136,7 +116,6 @@ def user(id):
         "tweest_titles_per_rev": rev_tw_tit,
         "image_file":image_file,
         "current_user_name":cun,
-        'sidebar_data': sidebar_items,
         "forums":forums,
         "tweests_and_pics":tweests_and_pics,
         "articles":articles,

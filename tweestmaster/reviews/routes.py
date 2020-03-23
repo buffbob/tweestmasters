@@ -35,7 +35,7 @@ def new_review(id):
     if form.validate_on_submit():
         e_score = form.entertainment_score.data
         s_score = form.style_score.data
-        local_avg_score = int(e_score + s_score)/2
+        local_avg_score = int((e_score + s_score)/2)
         review = Review(entertainment_score=e_score, style_score=s_score,
                         content=form.content.data, tweest_id=id,
                         user_id=current_user.id,
@@ -44,11 +44,13 @@ def new_review(id):
         # update score for tweest of concern
         initial_score = tweestofconcern.score# score
         total_raw_score = 0
-        if initial_score != 0: ###### safer:::: >>  could also say if length of tweestofconcern.reviews == 0
+        if initial_score: ###### safer:::: >>  could also say if length of tweestofconcern.reviews == 0
+            print(f"initial score of {initial_score}")
             revs = tweestofconcern.reviews
             num_reviews = len(revs)
             for rev in revs: # length or num reviews:
-                total_raw_score += rev.score
+                temp = int((rev.entertainment_score + rev.style_score)/2)
+                total_raw_score += temp
 
             new_score = (total_raw_score + local_avg_score)/(num_reviews+1)
         else:

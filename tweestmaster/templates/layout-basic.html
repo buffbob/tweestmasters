@@ -21,9 +21,11 @@ function outputStyleUpdate(score) {
 }
 
     </script>
+    {% if data is defined %}
     {% if data.get('title') is defined %}
     <title>TweestMasters- {{ data.get("title") }}</title>
     {% else %}
+    {% endif %}
     <title>TweestMasters</title>
     {% endif %}
 </head>
