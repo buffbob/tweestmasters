@@ -52,7 +52,7 @@ def article(id):
     # to be rendered in sidebar
     tweests_join = db.session.query(Tweest, User).filter(Tweest.article_id == id).all()
     article_id = session['current_article_id']
-    tweests_users = db.session.query(Tweest, User).join(User).filter(Tweest.article_id == article_id).order_by(Tweest.id.asc()).all()
+    tweests_users = db.session.query(Tweest, User).join(User).filter(Tweest.article_id == article_id).order_by(Tweest.id.desc()).all()
 
 
     data_args = {

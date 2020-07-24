@@ -8,9 +8,7 @@
     </h3>
     <hr>
 </div>
-<h5>
-    Feature Article-
-</h5>
+
 {% endblock %}
 
 {% block main_content %}
@@ -65,28 +63,6 @@
 {% endif %}
 {% include "sub/all_tweests_for_an_article.html" %}
 
-
-<h4 class="pt-4">Forum Articles</h4>
-<div class="pb-4" style="">
-    <table class="" style="width:100%; background-color:#dddddd;">
-        <tr>
-            <th>date</th>
-            <th>title</th>
-            <th>author</th>
-            <th>num tweests</th>
-        </tr>
-        {% for art in data['z_art_authors'] %}
-        <tr>
-            <td>{{art[0].date_created.strftime("%h-%d-%y") }}</td>
-            <td><a href="{{ url_for('articles.article', id=art[0].id) }}">{{ art[0].title }}</a></td>
-            <td>{{ art[1] }}</td>
-            <td>{{ art[0].tweests|count }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
-
-
 {% endblock %}
 {% block sidebar_header %}
 {% include "sub/stats_div.html" %}
@@ -99,6 +75,23 @@
 
 {% endblock %}
 {% block sidebar_main %}
+<h4 class="pt-4">Forum Articles</h4>
+<div class="pb-4" style="">
+    <table class="" style="width:100%; background-color:#dddddd;">
+        <tr>
+            <th>title</th>
+            <th>author</th>
+            <th>tweests</th>
+        </tr>
+        {% for art in data['z_art_authors'] %}
+        <tr>
+            <td><a href="{{ url_for('articles.article', id=art[0].id) }}">{{ art[0].title }}</a></td>
+            <td>{{ art[1] }}</td>
+            <td>{{ art[0].tweests|count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 
 {% include "sub/sidebar_links.html" %}
 

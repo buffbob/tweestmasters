@@ -5,6 +5,9 @@ from tweestmaster.models import Forum, User, Article
 from flask_login import current_user, login_required
 from tweestmaster.site_utils import format_and_save_user_pic
 
+from tweestmaster.models import db, Tweest, Article, User, Forum
+
+
 forums = Blueprint('forums', __name__)
 
 
@@ -101,6 +104,11 @@ def show(id):
 
 
 
+
+
+
+    tweests_users = db.session.query(Tweest, User).join(User).filter(Tweest.article_id == current_article.id).order_by(Tweest.id.desc()).all()
+
     arg_dict = {
         "title":forum.name,
         "a_member":a_member,
@@ -117,7 +125,7 @@ def show(id):
         "current_forum_name": forum.name,
         "articles": forum.articles,
         "z_art_authors": zip(forum.articles, art_authors),
-        "tweests_users": zip(current_article_tweests, tweest_authors)
+        "tweests_users": tweests_users
     }
     return render_template('forums/show.html', data=arg_dict)
 

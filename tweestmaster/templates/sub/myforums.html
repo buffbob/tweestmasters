@@ -6,7 +6,10 @@
         <div class="col-sm-9">
             <a style="color:#666666" href="{{ url_for('forums.show', id=forum.id) }}">{{forum.name }}</a>
         </div>
-        {% if forum.leader_id == current_user.id %}
+
+        {% if forum.name == "Master"  %}
+
+        {% elif forum.leader_id == current_user.id %}
         <div class="col-sm-3 p-1"><a href="{{ url_for('forums.edit', id=forum.id) }}">
             <button class="btn btn-sm btn-secondary" onclick="">edit</button>
         </a></div>
@@ -16,12 +19,6 @@
         </a></div>
 
         {% endif %}
-    {% else %}
-        <div class="col-sm-9">{{ forum.name }}
-        </div>
-        <div class="col-sm-3 p-1"><a href="{{ url_for('forums.show', id=forum.id) }}">
-            <button class="btn btn-sm btn-secondary" onclick="">visit</button>
-        </a></div>
     {% endif %}
     </div>
     <hr>

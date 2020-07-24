@@ -25,7 +25,7 @@ def home():
 
     images = current_article.pics
     #tweests_users is tweest, user tuple
-    tweests_users = db.session.query(Tweest, User).join(User).filter(Tweest.article_id == article_id).order_by(Tweest.id.asc()).all()
+    tweests_users = db.session.query(Tweest, User).join(User).filter(Tweest.article_id == article_id).order_by(Tweest.id.desc()).all()
     #tweests = Tweest.query.filter(Tweest.article_id==feature_article.user_id).order_by(asc(Tweest.date_created)).all()
     #.paginate(page=page, per_page=5)
     # time to work on the feature articles
