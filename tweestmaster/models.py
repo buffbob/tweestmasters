@@ -24,11 +24,11 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(100), nullable=False, default='default.jpg')
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     # one to many relationships
-    reviews = db.relationship("Review", backref="review_user", lazy=True)
-    tweests = db.relationship("Tweest", backref='tweest_user', lazy=True)
-    articles = db.relationship("Article", backref="article_user")
+    reviews = db.relationship("Review", backref="review_user", lazy=True, order_by="desc(Review.date_created)")
+    tweests = db.relationship("Tweest", backref='tweest_user', lazy=True, order_by="desc(Tweest.date_created)")
+    articles = db.relationship("Article", backref="article_user", order_by="desc(Article.date_created)")
     # many to many---- must have the memberships table above to correlate
-    forums = db.relationship("Forum", secondary="memberships", lazy='subquery',
+    forums = db.relationship("Forum", secondary="memberships", lazy='subquery', order_by="desc(Forum.date_created)",
                              backref=db.backref("users", lazy=True))
 
     def get_reset_token(self, expires_sec=1800):
