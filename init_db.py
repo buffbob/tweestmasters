@@ -1,11 +1,13 @@
-from tweestmaster import db, bcrypt,create_app
-
+from tweestmaster import db, bcrypt, create_app
 import tweestmaster.models as tm
 import secrets
 # admin pass
-admin_pass = 'passpass'
+admin_pass = 'password'
 # hashed pass
-# pwh = bcrypt.generate_password_hash(admin_pass)
+#pwh = bcrypt.generate_password_hash(admin_pass)
+# using simple password for now
+# perform a check somewhere
+
 
 # add admin, site_forum and first Article
 article_content1 = """For many years, people had suspected the mountains in present-day Colorado contained numerous rich gold deposits. In 1835, French trapper Eustace Carriere lost his party and ended up wandering through the mountains for many weeks. During those weeks he found many gold specimens which he later took back to New Mexico for examination. Upon examination, they turned out to be "pure gold". But when he tried to lead an expedition back to the location of where he found the gold, they came up short because he could not quite remember the location.
@@ -101,12 +103,12 @@ Six months, $30,000 in legal fees, and several dropped charges later, Jonathan w
 
 
 ####################################################################
-app= create_app()
+app = create_app()
 
 with app.app_context():
     # add tables for sqlite  ## not needed for mysql after "flask db upgrade"
-    # db.create_all()
-    #  db.session.commit()
+    db.create_all()
+    db.session.commit()
 
     u1 = tm.User(username="Admin", email='admin@tweestmasters.com', password=admin_pass)
     # now add 2 more users

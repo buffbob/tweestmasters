@@ -2,9 +2,9 @@ import os
 import json
 
 app_name = "tweestmasters"
-root_dir = "/etc/web_app_configs/"
+root_dir = "/etc/web_app_configs"
 file_name = "config." + app_name + ".json"
-file_path = root_dir + file_name
+file_path = root_dir + "/" + file_name
 
 temp_1 = " "
 temp_2 = " "
@@ -21,11 +21,13 @@ if os.path.isfile(file_path):
 
 else:
     temp_1 = '4fb766da1c040c452e02703a752d233f'
-    # temp_2 = 'sqlite:///site.db'
-    temp_2 = 'mysql+pymysql://admin:Root!@localhost:3306/tweestmasters'
+    temp_2 = 'sqlite:///site.db'
+    # temp_2 = 'mysql+pymysql://tweest:Root!@localhost:3306/tweestmasters'
     temp_3 = 'admin'
     temp_4 = 'email_password'
 
+
+# sql settings
 temp_5 = False
 temp_6 = False
 

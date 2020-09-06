@@ -1,4 +1,4 @@
-from flask import render_template, request, Blueprint, session
+from flask import render_template, request, Blueprint, session, flash
 from flask_login import current_user
 from sqlalchemy import func
 
@@ -10,6 +10,7 @@ main = Blueprint("main", __name__)
 @main.route("/")
 @main.route("/home", methods=['GET','POST'])
 def home():
+    flash("This site is underdevelopment. Thanks and enjoy!", "success")
     admin_id = 1 # admin
     initial_forum_id = 1 # master
     current_article = Article.query.filter_by(forum_id=initial_forum_id).order_by(Article.id.desc()).first() # thus the newest article by admin
