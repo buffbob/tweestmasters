@@ -1,6 +1,6 @@
 {% extends "layout-basic.html" %}
 
-
+{# !!!!!! maybe can delete this !!!!!!!!!!!!!!!!! #}
 {% block main_content %}
 <div>
     <div><img class="rounded-circle article-img" src="{{ data['image_file'] }}">
@@ -81,17 +81,29 @@
 <h5>Reviews</h5>
 {% for reviewtt in data['rev_tt_tup'] %}
 <article class="media content-section">
-        <div class="headline">
-            {{ reviewtt[1] }}
+    {# todo: format with columns #}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <span class="text-muted" style="font-size:10px;">Original tweest: </span><br>{{ reviewtt[1] }}<br>
+            <span class="text-muted pl-4" style="font-size:10px;">by: </span> boogers<br>
+            <span class="text-muted pl-4" style="font-size:10px;">reviewed on:</span>
+            <span class="text-muted" style="font-size:10px;">{{ reviewtt[0].date_created.strftime('%Y-%m-%d') }}</span>
         </div>
-        <div>
-            <p class="article-content mb-0">{{ reviewtt[0].content }}</p>
+        <div class="col-sm-5">
+            <textarea class="article-content mb-0">{{ reviewtt[0].content }}</textarea>
         </div>
-        <div>
-            <small class="text-muted float-right" style="font-size:10px;">
-                <span>posted on <span>{{ reviewtt[0].date_created.strftime('%Y-%m-%d') }}</span></span>
-            </small>
+        <div class="col-sm-1">
+            <span class="text-muted" style="font-size:10px;">Style</span>
+            S score
         </div>
+        <div class="col-sm-2">
+            <span class="text-muted" style="font-size:10px;">Entertainment</span><br>
+            score
+        </div>
+    </div>
+    </div>
 </article>
 {% endfor %}
 {% endif %}

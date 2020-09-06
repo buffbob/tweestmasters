@@ -21,8 +21,8 @@ if os.path.isfile(file_path):
 
 else:
     temp_1 = '4fb766da1c040c452e02703a752d233f'
-    # temp_2 = 'sqlite:///site.db'
-    temp_2 = 'mysql+pymysql://tweest:Root!@localhost:3306/tweestmasters'
+    temp_2 = 'sqlite:///site.db'
+    # temp_2 = 'mysql+pymysql://tweest:Root!@localhost:3306/tweestmasters'
     temp_3 = 'admin'
     temp_4 = 'email_password'
 

@@ -77,7 +77,7 @@ def user(id):
     tweests_and_pics = [(tweest, Article.query.filter(Article.id==tweest.article_id).first().pics[0].uri) for tweest in tweests]
     reviews = person_of_interest.reviews
     # for every review we also need the title of the associated tweet
-    rev_tw_tit = [Tweest.query.filter_by(id=rev.user_id).first().title for rev in reviews] # list of titles to zip ? with reviews
+    rev_tw_tit = [Tweest.query.filter_by(id=rev.tweest_id).first().title for rev in reviews] # list of titles to zip ? with reviews
     forums = person_of_interest.forums
 
     # current forum name

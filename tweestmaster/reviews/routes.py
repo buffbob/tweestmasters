@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, session, redirect, url_for
 from flask_login import login_required, current_user
 from tweestmaster.models import Forum, Tweest, Article, User, Review
 from tweestmaster.reviews.forms import ReviewForm
@@ -59,6 +59,7 @@ def new_review(id):
         tweestofconcern.score = new_score
         db.session.add(review)
         db.session.commit()
+        return redirect(url_for("main.home"));
 
 
 
