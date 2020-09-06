@@ -111,7 +111,7 @@ with app.app_context():
     db.create_all()
     db.session.commit()
 
-    u1 = tm.User(username="Admin", email='admin@tweestmasters.com', password=pwh)
+    u1 = tm.User(username="Admin", email='admin@tweestmasters.com', password=admin_pass)
     # now add 2 more users
     u2 = tm.User(username="BuffBob", email="lastgulch@gmail.com", password="password")
     u3 = tm.User(username="Squirrel", email="squirrel@gmail.com", password="password")
