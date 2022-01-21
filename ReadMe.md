@@ -1,9 +1,9 @@
 ### This is a currently running site that can be viewed at
 
 <h1><a href="https://www.tweestmasters.com/">Tweestmasters.com</a></h1>
-<hr>
 
-Tweestmasters is a cross between twitter and toastmasters. It is meant to improve your writing skills by writing and reviewing short stories or tweests. Give it a try. I know it is rough maybe you could make it better?
+
+<h4>Tweestmasters is a cross between twitter and toastmasters. It is meant to improve your writing skills by writing and reviewing short stories or tweests. Give it a try. I know it is rough maybe you could make it better?</h4>
 
 <hr>
 
@@ -13,9 +13,10 @@ Tweestmasters is a cross between twitter and toastmasters. It is meant to improv
 <hr>
 
 <h3> My users and the master forum</h3>
-  
-  
 <img src="Screenshot2.png">
+
+<hr>
+<hr>
 
 <h4>current missing fuctionality</h4>
 <ul>
