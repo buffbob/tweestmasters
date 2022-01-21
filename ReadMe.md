@@ -9,5 +9,9 @@ This app is a cross between twitter and toastmasters. It is meant to improve you
   <li><h5>this is a work in progress with no testing</h5></li>
 </ul>
 <hr>
-
+<h2> The Home Page</h2>
 <img src="Screenshot.png">
+
+<hr>
+<h3> My users and the master forum</h3
+<img src="Screenshot2.png">
