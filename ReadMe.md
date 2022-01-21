@@ -13,5 +13,8 @@ This app is a cross between twitter and toastmasters. It is meant to improve you
 <img src="Screenshot.png">
 
 <hr>
-<h3> My users and the master forum</h3
+
+<h3> My users and the master forum</h3>
+  
+  
 <img src="Screenshot2.png">
